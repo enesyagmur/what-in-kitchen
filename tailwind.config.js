@@ -5,7 +5,14 @@ module.exports = {
     "./src/**/*.{js,ts,jsx,tsx}", // Vite projenizdeki dosyaları kapsar
   ],
   theme: {
-    extend: {},
+    extend: {
+      colors: {
+        cream_custom: "#DCE9E2",
+        brown_custom: "#D79B6B",
+        green_custom: "#538061",
+        red_custom: "#D96452",
+      },
+    },
   },
   plugins: [],
 };
