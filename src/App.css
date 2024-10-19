@@ -1,3 +1,31 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+.form {
+  @apply w-11/12 h-4/6 flex flex-col items-center justify-between;
+}
+
+.input-big-frame {
+  @apply w-10/12 h-[70px] flex flex-col items-start justify-between;
+}
+.input-title {
+  @apply font-semibold text-gray-500;
+}
+.input-small-frame {
+  @apply w-full h-[45px] flex items-center border-2 rounded-lg bg-white;
+}
+.input-icon {
+  @apply text-gray-400;
+}
+.input {
+  @apply w-11/12 h-full pl-2 focus:outline-none;
+}
+
+.other-login-methods {
+  @apply w-4/12 h-full flex items-center justify-center bg-white cursor-pointer m-1 rounded-lg  hover:bg-neutral-100;
+}
+
+.login-methods-image {
+  @apply w-[30px] h-[30px] object-cover;
+}
