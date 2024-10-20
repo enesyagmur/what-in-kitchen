@@ -3,7 +3,8 @@ import logo from "../../assets/logo1.png";
 import { IoEyeOffOutline, IoKeyOutline } from "react-icons/io5";
 
 import { useNavigate } from "react-router-dom";
-import { BiErrorCircle, BiUserCircle } from "react-icons/bi";
+import { BiUserCircle } from "react-icons/bi";
+import { VscError } from "react-icons/vsc";
 
 const FormRegister = () => {
   const navigate = useNavigate();
@@ -25,7 +26,7 @@ const FormRegister = () => {
               placeholder="Ahmet Yılmaz"
               id="name"
             />
-            <BiErrorCircle className="input-error-icon" />
+            <VscError className="input-error-icon" />
           </div>
         </div>
 
@@ -39,7 +40,7 @@ const FormRegister = () => {
               placeholder="whatinkitchen@info.com"
               id="email"
             />
-            <BiErrorCircle className="input-error-icon" />
+            <VscError className="input-error-icon" />
           </div>
         </div>
 
@@ -54,7 +55,7 @@ const FormRegister = () => {
               id="password"
             />
             <IoEyeOffOutline className="input-info-icon mr-4" />
-            <BiErrorCircle className="input-error-icon" />
+            <VscError className="input-error-icon" />
           </div>
         </div>
 

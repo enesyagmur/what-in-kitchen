@@ -5,7 +5,7 @@ import google_logo from "../../assets/google-logo.png";
 import x_logo from "../../assets/x-logo.png";
 import github_logo from "../../assets/github-logo.png";
 import { useNavigate } from "react-router-dom";
-import { BiErrorCircle } from "react-icons/bi";
+import { VscError } from "react-icons/vsc";
 
 const FormLogin = () => {
   const navigate = useNavigate();
@@ -27,7 +27,7 @@ const FormLogin = () => {
               placeholder="whatinkitchen@info.com"
               id="email"
             />
-            <BiErrorCircle className="input-error-icon" />
+            <VscError className="input-error-icon" />
           </div>
         </div>
 
@@ -42,7 +42,7 @@ const FormLogin = () => {
               id="password"
             />
             <IoEyeOffOutline className="input-info-icon mr-4" />
-            <BiErrorCircle className="input-error-icon" />
+            <VscError className="input-error-icon" />
           </div>
         </div>
 
