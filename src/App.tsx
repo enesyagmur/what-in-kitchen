@@ -22,5 +22,4 @@ function App() {
 
 export default App;
 
-//DURUM:halfImage componentini slider gibi yapıp nasıl çalışır bölümü ekleyeceğim
-//home tasarım
+//DURUM:home tasarım
