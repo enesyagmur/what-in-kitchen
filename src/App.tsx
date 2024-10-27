@@ -22,4 +22,4 @@ function App() {
 
 export default App;
 
-//DURUM:home tasarım
+//DURUM:home sayfasında input u anımasyonlu olarak yukarı göndermeye çalışıyorum

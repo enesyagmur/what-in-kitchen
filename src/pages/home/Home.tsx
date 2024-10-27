@@ -11,9 +11,8 @@ const Home = () => {
   return (
     <div
       style={backgroundStyle}
-      className="w-full min-h-svh flex items-center justify-center relative"
+      className="w-full min-h-screen flex items-center justify-center relative"
     >
-      <div className="w-10/12 min-h-[600px] bg-green_custom rounded-lg opacity-50 flex items-center justify-center absolute"></div>
       <Ai />
     </div>
   );

@@ -1,3 +1,5 @@
+const { transform } = require("typescript");
+
 /** @type {import('tailwindcss').Config} */
 module.exports = {
   content: [
@@ -11,6 +13,14 @@ module.exports = {
         brown_custom: "#D79B6B",
         green_custom: "#538061",
         red_custom: "#D96452",
+      },
+      animation: {
+        moveTopAnimate: "moveTopAnimate 1s ease forwards",
+      },
+      keyframes: {
+        moveTopAnimate: {
+          "100%": { transform: "translateY(-73vh)" },
+        },
       },
     },
   },
