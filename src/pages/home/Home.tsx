@@ -1,9 +1,21 @@
-import homeBg from "../../assets/homebg6.png";
+import { useEffect, useState } from "react";
+
 import Ai from "./Ai";
+import getRandomImage from "../../components/RandomBg";
 
 const Home = () => {
+  const [randomImage, setRandomImage] = useState<string>("");
+
+  useEffect(() => {
+    const fetchImage = async () => {
+      const imageUrl: string = await getRandomImage();
+      setRandomImage(imageUrl);
+    };
+    fetchImage();
+  }, []);
+
   const backgroundStyle = {
-    backgroundImage: `url(${homeBg})`,
+    backgroundImage: `url(${randomImage})`,
     backgroundSize: "cover",
     backgroundRepeat: "repeat-y",
   };

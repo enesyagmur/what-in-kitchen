@@ -10,8 +10,10 @@ const Input: React.FC<inputProps> = ({ searched, setSearched }) => {
   return (
     <div
       className={`${
-        searched ? "fixed top-2 " : "relative mt-6"
-      } w-10/12 sm:w-9/12 md:w-8/12 lg:w-7/12 h-14 sm:h-16 lg:h-20 flex flex-col items-center justify-center`}
+        searched
+          ? "fixed top-2 h-16 lg:h-20 w-10/12"
+          : "relative mt-6 w-11/12  h-20 lg:h-20"
+      }  sm:w-9/12 md:w-8/12 lg:w-7/12 h-14  flex flex-col items-center justify-center`}
     >
       <div className="w-full h-12 sm:h-14 lg:h-16 flex items-center justify-center bg-white border-2 border-green_custom rounded-3xl">
         <input

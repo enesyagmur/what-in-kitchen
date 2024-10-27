@@ -17,13 +17,13 @@ const Ai = () => {
       <div
         className={`${
           searched ? "min-h-screen" : "h-5/6 lg:min-h-[500px] rounded-lg"
-        } w-full sm:w-11/12 bg-cream_custom  z-10 flex flex-col items-center justify-center `}
+        } w-full sm:w-11/12 lg:w-10/12 bg-cream_custom  z-10 flex flex-col items-center justify-center `}
       >
         {!searched && (
           <div
             className={`display-flex w-full h-10 flex items-center justify-center font-bold text-center text-red_custom`}
           >
-            <p className={`display-flex capitalize text-4xl`}>
+            <p className={`display-flex capitalize text-3xl md:text-4xl`}>
               Mutfakta ne var
             </p>
             <img
