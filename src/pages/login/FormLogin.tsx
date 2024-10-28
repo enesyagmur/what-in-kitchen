@@ -10,7 +10,7 @@ import { VscError } from "react-icons/vsc";
 const FormLogin = () => {
   const navigate = useNavigate();
   return (
-    <div className="w-11/12 md:w-7/12 h-full flex flex-col items-center justify-center relative">
+    <div className="w-full sm:w-7/12 md:w-7/12 h-3/6 sm:h-full flex flex-col items-center justify-between sm:justify-center">
       <div className="form-title-frame">
         <img src={logo} alt="logo" className="form-title-logo" />
         <p className="form-title">Hoşgeldiniz</p>
@@ -46,7 +46,7 @@ const FormLogin = () => {
           </div>
         </div>
 
-        <div className="w-full md:w-10/12 h-[40px] flex items-center justify-center mt-2">
+        <div className="w-full md:w-10/12 h-[30px] sm:h-[40px] flex items-center justify-center mt-2">
           <div className="other-login-methods">
             <img
               src={google_logo}

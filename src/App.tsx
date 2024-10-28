@@ -22,4 +22,4 @@ function App() {
 
 export default App;
 
-//DURUM:home sayfasında input u anımasyonlu olarak yukarı göndermeye çalışıyorum
+//DURUM:giriş ve kayıt satfasına nasıl çalışır componentini küçük ekranlarda da göstericek şekilde yapacağım

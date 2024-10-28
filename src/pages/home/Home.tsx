@@ -16,7 +16,7 @@ const Home = () => {
 
   const backgroundStyle = {
     backgroundImage: `url(${randomImage})`,
-    backgroundSize: "cover",
+
     backgroundRepeat: "repeat-y",
   };
 

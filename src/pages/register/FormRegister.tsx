@@ -9,7 +9,7 @@ import { VscError } from "react-icons/vsc";
 const FormRegister = () => {
   const navigate = useNavigate();
   return (
-    <div className="w-full md:w-7/12 h-full flex flex-col items-center justify-center relative">
+    <div className="w-full sm:w-7/12 h-3/6 sm:h-full flex flex-col items-center justify-between sm:justify-center relative">
       <div className="form-title-frame">
         <img src={logo} alt="logo" className="form-title-logo" />
         <p className="form-title">Yeni Hesap</p>

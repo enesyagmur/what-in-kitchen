@@ -13,13 +13,13 @@ const HalfImage = () => {
   const [showHowItWorks, setShowHowItWorks] = useState<boolean>(false);
 
   return (
-    <div className="hidden md:flex w-5/12 h-full rounded-lg relative">
+    <div className="w-11/12 sm:w-5/12  h-3/6 sm:h-full rounded-lg relative">
       {showHowItWorks ? (
-        <div className="w-full h-full bg-green_custom flex flex-col items-center justify-center">
+        <div className="w-full h-full bg-green_custom rounded-lg flex flex-col items-center justify-center">
           <p className="w-full h-1/6 font-bold text-2xl text-black text-center mt-2">
             Nasıl Çalışır?
           </p>
-          <p className="w-11/12 h-4/6 text-lg text-cream_custom">
+          <p className="w-11/12 h-4/6 text-[16px] sm:text-lg text-cream_custom">
             Bu araç, elinizdeki malzemelere göre size yapabileceğiniz tarifleri
             önerir. Tek yapmanız gereken, mutfağınızda bulunan malzemeleri
             listelemek. Yapay zeka, bu malzemelerle uyumlu olan tarifleri analiz

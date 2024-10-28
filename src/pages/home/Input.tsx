@@ -18,7 +18,8 @@ const Input: React.FC<inputProps> = ({ searched, setSearched }) => {
       <div className="w-full h-12 sm:h-14 lg:h-16 flex items-center justify-center bg-white border-2 border-green_custom rounded-3xl">
         <input
           type="text"
-          className="w-11/12 h-full rounded-3xl focus:outline-none text-center pl-2 capitalize "
+          className="w-11/12 h-full rounded-3xl focus:outline-none text-center pl-2 capitalize"
+          placeholder="makarna krema mantar tavuk..."
         />
         <div
           className={`${
