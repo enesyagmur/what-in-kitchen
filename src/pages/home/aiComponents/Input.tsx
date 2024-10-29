@@ -12,10 +12,10 @@ const Input: React.FC<inputProps> = ({ searched, setSearched }) => {
       className={`${
         searched
           ? "fixed top-2 h-16 lg:h-20 w-10/12"
-          : "relative mt-6 w-11/12  h-20 lg:h-20"
+          : "relative mt-6 w-11/12 h-20 lg:h-20"
       }  sm:w-9/12 md:w-8/12 lg:w-7/12 h-14  flex flex-col items-center justify-center`}
     >
-      <div className="w-full h-12 sm:h-14 lg:h-16 flex items-center justify-center bg-white border-2 border-green_custom rounded-3xl">
+      <div className="w-full h-12 sm:h-14 lg:h-16 flex items-center justify-center bg-white border-2 border-cream_custom rounded-3xl">
         <input
           type="text"
           className="w-11/12 h-full rounded-3xl focus:outline-none text-center pl-2 capitalize"
@@ -31,9 +31,9 @@ const Input: React.FC<inputProps> = ({ searched, setSearched }) => {
         </div>
       </div>
       {!searched && (
-        <p className="text-green_custom text-sm mt-1">
-          Doğru tarif ve sonuç için malzemelerinizi arasında boşluk olacak
-          şekilde girmeniz yeterli.
+        <p className="text-cream_custom text-[11px] mt-2">
+          Öncelikle malzeme listesi oluşturalım. Doğru tarif ve sonuç için
+          malzemelerinizin arasında boşluk olacak şekilde girmeniz yeterli.
         </p>
       )}
     </div>

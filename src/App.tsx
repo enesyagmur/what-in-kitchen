@@ -22,4 +22,4 @@ function App() {
 
 export default App;
 
-//DURUM:giriş ve kayıt satfasına nasıl çalışır componentini küçük ekranlarda da göstericek şekilde yapacağım
+//DURUM: ai componentinde materials da inputa girilen malzemeleri göstereceğim sağında tarif türü(vegan, vejeteryan) - tarif çşidi (tatlı yemek meze vb) gibi filtre ekleyeceğim
