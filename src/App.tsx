@@ -22,4 +22,4 @@ function App() {
 
 export default App;
 
-//DURUM: ai componentinde materials da inputa girilen malzemeleri göstereceğim sağında tarif türü(vegan, vejeteryan) - tarif çşidi (tatlı yemek meze vb) gibi filtre ekleyeceğim
+//DURUM: ai componentinde materials da foodtype tasarımı ve seçilme durumu

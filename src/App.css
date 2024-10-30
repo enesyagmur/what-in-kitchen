@@ -54,3 +54,7 @@
 .form-page-change-button {
   @apply w-10/12 h-[20px] text-sm text-gray-500 text-center cursor-pointer relative bottom-4 hover:text-black mt-4 sm:mt-0;
 }
+
+.food-option-frame {
+  @apply w-4/12 h-[60px] flex items-center justify-center cursor-pointer box-border;
+}
