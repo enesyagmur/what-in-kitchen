@@ -15,8 +15,8 @@ const Ai = () => {
 
       <div
         className={`${
-          searched ? "min-h-screen" : "h-5/6 lg:h-[420px] rounded-lg"
-        } w-full sm:w-11/12 lg:w-10/12 bg-green_custom  z-10 flex flex-col items-center justify-center `}
+          searched ? "min-h-screen" : "h-5/6 lg:h-[500px] rounded-lg"
+        } w-full sm:w-11/12 lg:w-11/12 bg-green_custom  z-10 flex flex-col items-center justify-center `}
       >
         {list.length ? <Materials setSearched={setSearched} /> : <Begining />}
       </div>

@@ -56,5 +56,5 @@
 }
 
 .food-option-frame {
-  @apply w-4/12 h-[60px] flex items-center justify-center cursor-pointer box-border;
+  @apply w-4/12 h-[90px] flex items-center justify-start cursor-pointer box-border pl-3;
 }
