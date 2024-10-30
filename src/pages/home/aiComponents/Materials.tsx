@@ -1,6 +1,4 @@
 import ip from "../../../assets/materials-images/lineBg.png";
-import ip2 from "../../../assets/materials-images/ip2.png";
-
 import Standart from "../../../assets/materials-images/standart.png";
 import Vejeteryan from "../../../assets/materials-images/vejetaryan.png";
 import Vegan from "../../../assets/materials-images/vegan.png";
@@ -14,10 +12,10 @@ import Farketmez from "../../../assets/materials-images/farketmez.png";
 import { useState } from "react";
 
 type materialsProps = {
-  setSearched: (value: boolean) => void;
+  list: string[];
 };
 
-const Materials: React.FC<materialsProps> = ({ setSearched }) => {
+const Materials: React.FC<materialsProps> = ({ list }) => {
   const [foodChoice, setFoodChoice] = useState<
     { name: string; selected: boolean }[]
   >([
@@ -55,22 +53,10 @@ const Materials: React.FC<materialsProps> = ({ setSearched }) => {
   ]);
   const foodTypeImages = [Standart, Vegan, Vejeteryan];
 
-  const mateialArray: string[] = [
-    "soğan",
-    "patlican",
-    "tavuk",
-    "mantar",
-    "krema",
-    "biber",
-    "domates",
-    "sarımsak",
-    "Ekle",
-  ];
-
   return (
     <div className="w-full h-full flex items-center justify-evenly">
       <div className="w-6/12 h-5/6 flex flex-wrap justify-evenly items-center ">
-        {mateialArray.map((element, index) => (
+        {list.map((element, index) => (
           <div className="w-5/12 h-1/6 flex flex-col items-start justify-center">
             <div className="w-full h-4/6 flex items-center justify-start">
               <p className="text-cream_custom">{index + 1}.</p>
