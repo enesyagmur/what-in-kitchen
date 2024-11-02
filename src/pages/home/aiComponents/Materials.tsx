@@ -21,16 +21,16 @@ const Materials: React.FC<materialsProps> = ({ list }) => {
   >([
     { name: "Yemek", selected: false },
     { name: "Tatlı", selected: false },
-    { name: "İçecek", selected: false },
     { name: "Atıştırmalık", selected: false },
+    { name: "İçecek", selected: false },
     { name: "Meze", selected: false },
     { name: "Fark Etmez", selected: true },
   ]);
   const foodChoiceImages = [
     Yemek,
     Tatli,
-    Icecek,
     Atistirmalik,
+    Icecek,
     Meze,
     Farketmez,
   ];
@@ -54,25 +54,31 @@ const Materials: React.FC<materialsProps> = ({ list }) => {
   const foodTypeImages = [Standart, Vegan, Vejeteryan];
 
   return (
-    <div className="w-full h-full flex items-center justify-evenly">
-      <div className="w-6/12 h-5/6 flex flex-wrap justify-evenly items-center ">
+    <div className="w-full h-full flex flex-col md:flex-row items-center justify-evenly">
+      <div className="w-11/12 md:w-5/12 lg:w-6/12 h-2/6 md:h-5/6 flex flex-wrap justify-between md:justify-evenly items-center pl-8 md:pl-0">
         {list.map((element, index) => (
-          <div className="w-5/12 h-1/6 flex flex-col items-start justify-center">
+          <div className="w-4/12 md:w-5/12 h-1/6 flex flex-col items-start justify-center">
             <div className="w-full h-4/6 flex items-center justify-start">
               <p className="text-cream_custom">{index + 1}.</p>
-              <p className="bg-transparent text-cream_custom w-10/12 text-start text-lg font-semibold  p-1 capitalize">
+              <p className="bg-transparent text-cream_custom w-10/12 text-start text-[12px] sm:text-sm  lg:text-lg font-semibold  p-1 capitalize">
                 {element}
               </p>
             </div>
             <img
               src={ip}
-              className="w-6/12 h-[6px] object-cover rounded-xl"
+              className="w-4/12 md:w-6/12 h-[6px] object-cover rounded-xl"
               alt=""
             />
           </div>
         ))}
       </div>
-      <div className="w-7/12 h-5/6 flex flex-col items-center justify-evenly ">
+      <div className="w-11/12 md:w-8/12 lg:w-7/12 h-4/6 md:h-5/6 flex flex-col items-center justify-evenly">
+        <img
+          src={ip}
+          className=" w-11/12 h-[6px] object-cover rounded-xl flex md:hidden"
+          alt=""
+        />
+
         <div className="w-11/12 h-1/5 flex items-center justify-between">
           {foodType.map((item, index) => (
             <div
@@ -91,22 +97,24 @@ const Materials: React.FC<materialsProps> = ({ list }) => {
             >
               <img
                 src={foodTypeImages[index]}
-                className={`w-[80px] h-[80px] object-cover`}
+                className="food-option-frame-image"
                 alt="Tarif Tipi"
               />
-              <p className="text-cream_custom ml-1">{item.name}</p>
+              <p className="text-cream_custom ml-0 sm:ml-1 text-[12px] sm:text-sm">
+                {item.name}
+              </p>
             </div>
           ))}
         </div>
         <img
           src={ip}
-          className="w-10/12 h-[6px] object-cover rounded-xl"
+          className=" w-10/12 h-[6px] object-cover rounded-xl hidden md:flex"
           alt=""
         />
         <div className="w-11/12 h-3/5 flex items-center justify-start flex-wrap ">
           {foodChoice.map((item, index) => (
             <div
-              className={`food-option-frame ${
+              className={`food-option-frame  ${
                 item.selected === true ? "border-2 rounded-lg" : "border-none"
               }`}
               key={index}
@@ -122,15 +130,17 @@ const Materials: React.FC<materialsProps> = ({ list }) => {
               <img
                 src={foodChoiceImages[index]}
                 alt=""
-                className="w-[80px] h-[80px] object-cover"
+                className="food-option-frame-image"
               />
-              <p className="text-cream_custom ml-1">{item.name}</p>
+              <p className="text-cream_custom ml-0 sm:ml-1 text-[12px] sm:text-sm">
+                {item.name}
+              </p>
             </div>
           ))}
         </div>
       </div>
 
-      <button className="w-5/12 h-[40px] bg-brown_custom text-cream_custom border-2 border-cream_custom rounded-lg absolute bottom-1 text-xl cursor-pointer hover:bg-red_custom ">
+      <button className="w-11/12 md:w-7/12 lg:w-5/12 h-[50px] md:h-[40px] bg-brown_custom text-cream_custom border-2 border-cream_custom rounded-lg absolute bottom-1 text-xl cursor-pointer hover:bg-red_custom ">
         Tarif Bul
       </button>
     </div>

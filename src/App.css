@@ -56,5 +56,9 @@
 }
 
 .food-option-frame {
-  @apply w-4/12 h-[90px] flex items-center justify-start cursor-pointer box-border pl-3;
+  @apply w-4/12 h-[90px] flex items-center justify-start cursor-pointer box-border pl-0 lg:pl-3;
+}
+
+.food-option-frame-image {
+  @apply w-[60px] md:w-[70px] lg:w-[80px] h-[60px] md:h-[70px] lg:h-[80px] object-cover;
 }

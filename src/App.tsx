@@ -22,4 +22,4 @@ function App() {
 
 export default App;
 
-//DURUM: ai componentinde materials da foodtype tasarımı ve seçilme durumu
+//DURUM: input tasarımını yapıyorum, kelime sınırı ya da yazdıkça buyuyen şekilde yapabilirim
