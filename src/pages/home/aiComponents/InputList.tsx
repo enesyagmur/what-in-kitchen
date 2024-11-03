@@ -11,6 +11,9 @@ const InputList: React.FC<inputProps> = ({ setList }) => {
 
   const updateList = () => {
     const newList = input.split(" ").filter((item) => item !== "");
+    if (newList.length > 12) {
+      newList.splice(12);
+    }
     setList([...newList]);
   };
 
@@ -24,18 +27,18 @@ const InputList: React.FC<inputProps> = ({ setList }) => {
         <img src={logo} alt="logo" className="w-[40px] h-[40px] object-cover" />
       </div>
 
-      <div className="w-full h-8 sm:h-10 lg:h-12 flex items-center justify-center bg-white border-2 border-cream_custom rounded-3xl">
+      <div className="w-full h-20 sm:h-10 lg:h-12 flex items-center justify-center bg-white border-2 border-cream_custom rounded-3xl">
         <input
           type="text"
-          className="w-11/12 h-full rounded-3xl  focus:outline-none text-center pl-2 capitalize"
+          className="w-11/12 h-full rounded-3xl focus:outline-none text-center pl-2 capitalize text-[10px] sm:text-sm hidden sm:flex"
           placeholder="makarna krema mantar tavuk..."
-          onChange={(e) => {
-            const value = e.target.value;
-
-            if (value.join("").lenght < 100) {
-              setInput(e.target.value);
-            }
-          }}
+          onChange={(e) => setInput(e.target.value)}
+        />
+        <textarea
+          className="w-11/12 h-full rounded-3xl focus:outline-none text-center p-2 capitalize text-sm flex sm:hidden overflow-hidden"
+          placeholder="makarna krema mantar tavuk..."
+          cols={2}
+          onChange={(e) => setInput(e.target.value)}
         />
         <div
           className="w-[63px] h-full flex items-center text-cream_custom justify-center bg-red_custom  text-lg rounded-tr-3xl rounded-br-3xl cursor-pointer hover:bg-brown_custom"
@@ -45,9 +48,9 @@ const InputList: React.FC<inputProps> = ({ setList }) => {
         </div>
       </div>
 
-      <p className="text-cream_custom text-[16px] mt-1 text-center">
+      <p className="text-cream_custom text-[10px] sm:text-[12px] md:text-[14px] lg:text-[16px] mt-1 text-center">
         Doğru tarif ve sonuç için malzemelerinizin arasında boşluk olacak
-        şekilde girmeniz yeterli.
+        şekilde girmeniz yeterli.(Max 12 adet)
       </p>
     </div>
   );
