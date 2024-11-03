@@ -22,4 +22,4 @@ function App() {
 
 export default App;
 
-//DURUM: input tasarımını yapıyorum, kelime sınırı ya da yazdıkça buyuyen şekilde yapabilirim
+//DURUM:

@@ -10,6 +10,7 @@ import Atistirmalik from "../../../assets/materials-images/atistirmalik.png";
 import Farketmez from "../../../assets/materials-images/farketmez.png";
 
 import { useState } from "react";
+import callGeminiAPI from "../../../Api/aiCall";
 
 type materialsProps = {
   list: string[];
@@ -52,6 +53,33 @@ const Materials: React.FC<materialsProps> = ({ list }) => {
     },
   ]);
   const foodTypeImages = [Standart, Vegan, Vejeteryan];
+
+  const createAsk = () => {
+    const askArray: string[] = [];
+    list.forEach((element) => {
+      askArray.push(element);
+    });
+    askArray.push("bu malzemeler ile yapılabilcek");
+    foodType.forEach((element, index) => {
+      if (element.selected === true && index !== 0) {
+        askArray.push(element.name);
+      }
+    });
+
+    foodChoice.forEach((element, index) => {
+      if (element.selected === true && index !== 5) {
+        askArray.push(element.name);
+      }
+    });
+    askArray.push("ürünlerini tarifleri ile bul ve json formatında göster");
+
+    return askArray.join(" ");
+  };
+
+  const fetchApi = async () => {
+    const result: string = await callGeminiAPI(createAsk());
+    console.log(result);
+  };
 
   return (
     <div className="w-full h-full flex flex-col md:flex-row items-center justify-evenly">
@@ -140,7 +168,10 @@ const Materials: React.FC<materialsProps> = ({ list }) => {
         </div>
       </div>
 
-      <button className="w-11/12 md:w-7/12 lg:w-5/12 h-[50px] md:h-[40px] bg-brown_custom text-cream_custom border-2 border-cream_custom rounded-lg absolute bottom-1 text-xl cursor-pointer hover:bg-red_custom ">
+      <button
+        className="w-11/12 md:w-7/12 lg:w-5/12 h-[50px] md:h-[40px] bg-brown_custom text-cream_custom border-2 border-cream_custom rounded-lg absolute bottom-1 text-xl cursor-pointer hover:bg-red_custom "
+        onClick={fetchApi}
+      >
         Tarif Bul
       </button>
     </div>

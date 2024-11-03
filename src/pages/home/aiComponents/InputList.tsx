@@ -14,7 +14,10 @@ const InputList: React.FC<inputProps> = ({ setList }) => {
     if (newList.length > 12) {
       newList.splice(12);
     }
-    setList([...newList]);
+
+    if (newList.length > 1) {
+      setList([...newList]);
+    }
   };
 
   return (

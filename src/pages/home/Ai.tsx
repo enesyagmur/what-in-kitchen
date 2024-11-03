@@ -1,7 +1,6 @@
 import { useState } from "react";
 import InputList from "./aiComponents/InputList";
 import Materials from "./aiComponents/Materials";
-import { string } from "yup";
 
 const Ai = () => {
   const [searched, setSearched] = useState<boolean>(false);
