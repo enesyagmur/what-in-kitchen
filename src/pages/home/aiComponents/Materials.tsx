@@ -8,9 +8,11 @@ import Icecek from "../../../assets/materials-images/icecek.png";
 import Meze from "../../../assets/materials-images/meze.png";
 import Atistirmalik from "../../../assets/materials-images/atistirmalik.png";
 import Farketmez from "../../../assets/materials-images/farketmez.png";
-
 import { useState } from "react";
 import callGeminiAPI from "../../../Api/aiCall";
+import { useNavigate } from "react-router-dom";
+import { useDispatch } from "react-redux";
+import { updateResult } from "../../../redux/resultSlice";
 
 type materialsProps = {
   list: string[];
@@ -71,14 +73,25 @@ const Materials: React.FC<materialsProps> = ({ list }) => {
         askArray.push(element.name);
       }
     });
-    askArray.push("ürünlerini tarifleri ile bul ve json formatında göster");
+    askArray.push("tariifleri bul ve json formatında dönüş yap");
 
     return askArray.join(" ");
   };
 
+  const navigate = useNavigate();
+  const dispatch = useDispatch();
+
   const fetchApi = async () => {
-    const result: string = await callGeminiAPI(createAsk());
-    console.log(result);
+    try {
+      const result: string = await callGeminiAPI(createAsk());
+
+      navigate("/result");
+      if (result) {
+        dispatch(updateResult(result));
+      }
+    } catch (error) {
+      console.error("Materials componentinde hata:", error);
+    }
   };
 
   return (

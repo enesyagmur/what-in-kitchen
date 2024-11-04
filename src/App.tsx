@@ -4,6 +4,7 @@ import Home from "./pages/home/Home";
 import Login from "./pages/login/Login";
 import Register from "./pages/register/Register";
 import NotFound from "./pages/notFound/NotFound";
+import Result from "./pages/result/Result";
 
 function App() {
   return (
@@ -13,6 +14,7 @@ function App() {
           <Route element={<Home />} path="/" />
           <Route element={<Login />} path="/login" />
           <Route element={<Register />} path="/register" />
+          <Route element={<Result />} path="/result" />
           <Route element={<NotFound />} path="*" />
         </Routes>
       </BrowserRouter>
@@ -23,3 +25,8 @@ function App() {
 export default App;
 
 //DURUM:
+/*aldığım sonucu düzenli şekilde göstermeye çalışıyorum, 
+başlıları ve yazıları ayırmam gerekiyor 
+kelime uzunluğuna göre yapabilirim
+ya da sonucu tekrar yapay zekaya düzelttirebilirim
+*/
