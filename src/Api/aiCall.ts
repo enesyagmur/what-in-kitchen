@@ -25,7 +25,9 @@ const callGeminiAPI = async (ask: string) => {
     return response.data.candidates[0].content.parts[0].text;
   } catch (error) {
     console.error("Gemini API çağrısında hata:", error);
-    throw error;
+    if (error instanceof Error) {
+      return error.message;
+    }
   }
 };
 

@@ -6,6 +6,7 @@ import { rootState } from "../../redux/store";
 const Result = () => {
   const [randomImage, setRandomImage] = useState<string>("");
   const answer = useSelector((state: rootState) => state.apiAnswer.answer);
+  const error = useSelector((state: rootState) => state.sliceError.error);
 
   useEffect(() => {
     const fetchImage = async () => {

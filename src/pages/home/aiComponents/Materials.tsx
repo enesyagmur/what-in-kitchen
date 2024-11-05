@@ -13,6 +13,8 @@ import callGeminiAPI from "../../../Api/aiCall";
 import { useNavigate } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import { updateResult } from "../../../redux/resultSlice";
+import { updateError } from "../../../redux/errorSlice";
+import { array } from "yup";
 
 type materialsProps = {
   list: string[];
@@ -84,14 +86,20 @@ const Materials: React.FC<materialsProps> = ({ list }) => {
   const fetchApi = async () => {
     try {
       const result: string = await callGeminiAPI(createAsk());
-
-      navigate("/result");
-      if (result) {
-        dispatch(updateResult(result));
-      }
+      return result;
     } catch (error) {
       console.error("Materials componentinde hata:", error);
+      return error;
     }
+  };
+
+  const checkAnswer = async () => {
+    navigate("/result");
+    const result: string = await fetchApi();
+
+    if (result.startsWith("```json") && result.endsWith("````")) {
+      dispatch(updateResult(result));
+    } else dispatch(updateError(result));
   };
 
   return (

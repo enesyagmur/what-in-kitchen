@@ -8,8 +8,10 @@ export const resultSlice = createSlice({
   reducers: {
     updateResult: (state, action: { payload: string }) => {
       const text = action.payload;
-      const cleanedText = text.replace(/^```json\s*|\s*```$/g, "");
-      state.answer = JSON.parse(cleanedText);
+      if (text.startsWith("```json") && text.endsWith("````")) {
+        const cleanedText = text.replace(/^```json\s*|\s*```$/g, "");
+        state.answer = JSON.parse(cleanedText);
+      }
     },
   },
 });
