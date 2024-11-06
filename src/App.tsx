@@ -25,8 +25,5 @@ function App() {
 export default App;
 
 //DURUM:
-/*aldığım sonucu düzenli şekilde göstermeye çalışıyorum, 
-başlıları ve yazıları ayırmam gerekiyor 
-kelime uzunluğuna göre yapabilirim
-ya da sonucu tekrar yapay zekaya düzelttirebilirim
-*/
+/*result ta başarısız sonuç gösterimi ve yükleniyor ekranı işlemindeyim
+ */

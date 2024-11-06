@@ -94,10 +94,13 @@ const Materials: React.FC<materialsProps> = ({ list }) => {
   };
 
   const checkAnswer = async () => {
-    navigate("/result");
-    const result: string = await fetchApi();
+    const result: string | unknown = await fetchApi();
 
-    if (result.startsWith("```json") && result.endsWith("````")) {
+    if (
+      typeof result === "string" &&
+      result.startsWith("```json") &&
+      result.endsWith("````")
+    ) {
       dispatch(updateResult(result));
     } else dispatch(updateError(result));
   };
@@ -191,7 +194,7 @@ const Materials: React.FC<materialsProps> = ({ list }) => {
 
       <button
         className="w-11/12 md:w-7/12 lg:w-5/12 h-[50px] md:h-[40px] bg-brown_custom text-cream_custom border-2 border-cream_custom rounded-lg absolute bottom-1 text-xl cursor-pointer hover:bg-red_custom "
-        onClick={fetchApi}
+        onClick={checkAnswer}
       >
         Tarif Bul
       </button>
