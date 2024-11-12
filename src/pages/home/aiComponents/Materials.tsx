@@ -14,13 +14,14 @@ import { useNavigate } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import { updateResult } from "../../../redux/resultSlice";
 import { updateError } from "../../../redux/errorSlice";
-import { array } from "yup";
+import Loading from "./Loading";
 
 type materialsProps = {
   list: string[];
 };
 
 const Materials: React.FC<materialsProps> = ({ list }) => {
+  const [loading, setLoading] = useState<boolean>(false);
   const [foodChoice, setFoodChoice] = useState<
     { name: string; selected: boolean }[]
   >([
@@ -102,10 +103,21 @@ const Materials: React.FC<materialsProps> = ({ list }) => {
       result.endsWith("````")
     ) {
       dispatch(updateResult(result));
-    } else dispatch(updateError(result));
+      navigate("/result");
+    } else if (typeof result === "string") {
+      dispatch(updateError(result));
+      navigate("/result");
+    }
   };
 
-  return (
+  const searchFunc = () => {
+    checkAnswer();
+    setLoading(true);
+  };
+
+  return loading ? (
+    <Loading />
+  ) : (
     <div className="w-full h-full flex flex-col md:flex-row items-center justify-evenly">
       <div className="w-11/12 md:w-5/12 lg:w-6/12 h-2/6 md:h-5/6 flex flex-wrap justify-between md:justify-evenly items-center pl-8 md:pl-0">
         {list.map((element, index) => (
@@ -194,7 +206,7 @@ const Materials: React.FC<materialsProps> = ({ list }) => {
 
       <button
         className="w-11/12 md:w-7/12 lg:w-5/12 h-[50px] md:h-[40px] bg-brown_custom text-cream_custom border-2 border-cream_custom rounded-lg absolute bottom-1 text-xl cursor-pointer hover:bg-red_custom "
-        onClick={checkAnswer}
+        onClick={searchFunc}
       >
         Tarif Bul
       </button>
