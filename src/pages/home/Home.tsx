@@ -5,6 +5,7 @@ import getRandomImage from "../../components/RandomBg";
 
 const Home = () => {
   const [randomImage, setRandomImage] = useState<string>("");
+  const [list, setList] = useState<string>([]);
 
   useEffect(() => {
     const fetchImage = async () => {
@@ -12,6 +13,8 @@ const Home = () => {
       setRandomImage(imageUrl);
     };
     fetchImage();
+
+    setList([]);
   }, []);
 
   const backgroundStyle = {
@@ -24,7 +27,7 @@ const Home = () => {
       style={backgroundStyle}
       className="w-full min-h-screen flex items-center justify-center relative"
     >
-      <Ai />
+      <Ai list={list} setList={setList} />
     </div>
   );
 };

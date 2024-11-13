@@ -8,14 +8,13 @@ import Icecek from "../../../assets/materials-images/icecek.png";
 import Meze from "../../../assets/materials-images/meze.png";
 import Atistirmalik from "../../../assets/materials-images/atistirmalik.png";
 import Farketmez from "../../../assets/materials-images/farketmez.png";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import callGeminiAPI from "../../../Api/aiCall";
 import { useNavigate } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import { updateResult } from "../../../redux/resultSlice";
 import { updateError } from "../../../redux/errorSlice";
 import Loading from "./Loading";
-import { string } from "yup";
 
 type materialsProps = {
   list: string[];
@@ -111,6 +110,21 @@ const Materials: React.FC<materialsProps> = ({ list }) => {
       }
     }
   };
+
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      if (loading === true) {
+        dispatch(
+          updateError(
+            "Sonuç beklenenden uzun sürdü! Dilerseniz malzemeleri ya da tarif tipini değiştirerek tekrar deneyebilirsiniz"
+          )
+        );
+        navigate("/result");
+      }
+    }, 8000);
+
+    return () => clearTimeout(timer);
+  }, [loading]);
 
   const searchFunc = () => {
     checkAnswer();
