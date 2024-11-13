@@ -25,5 +25,5 @@ function App() {
 export default App;
 
 //DURUM:
-/*result ta başarısız sonuç gösterimi ve yükleniyor ekranı işlemindeyim
+/*başarılı sonuçta tasarım düzenlemeleri yapıyorum
  */

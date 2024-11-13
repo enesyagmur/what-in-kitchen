@@ -15,6 +15,7 @@ import { useDispatch } from "react-redux";
 import { updateResult } from "../../../redux/resultSlice";
 import { updateError } from "../../../redux/errorSlice";
 import Loading from "./Loading";
+import { string } from "yup";
 
 type materialsProps = {
   list: string[];
@@ -97,16 +98,17 @@ const Materials: React.FC<materialsProps> = ({ list }) => {
   const checkAnswer = async () => {
     const result: string | unknown = await fetchApi();
 
-    if (
-      typeof result === "string" &&
-      result.startsWith("```json") &&
-      result.endsWith("````")
-    ) {
-      dispatch(updateResult(result));
-      navigate("/result");
-    } else if (typeof result === "string") {
-      dispatch(updateError(result));
-      navigate("/result");
+    if (typeof result === "string") {
+      if (result.includes("```json")) {
+        dispatch(updateResult(result));
+        setLoading(false);
+
+        navigate("/result");
+      } else {
+        dispatch(updateError(result));
+        setLoading(false);
+        navigate("/result");
+      }
     }
   };
 
