@@ -25,5 +25,6 @@ function App() {
 export default App;
 
 //DURUM:
-/*başarılı sonuçta tasarım düzenlemeleri yapıyorum
+/*login register işlemleri
+
  */
