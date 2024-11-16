@@ -6,9 +6,27 @@ import x_logo from "../../assets/x-logo.png";
 import github_logo from "../../assets/github-logo.png";
 import { useNavigate } from "react-router-dom";
 import { VscError } from "react-icons/vsc";
+import { useFormik } from "formik";
+import { loginSchema } from "../../formSchema/loginSchema";
+import { useState } from "react";
 
 const FormLogin = () => {
   const navigate = useNavigate();
+
+  const loginWithFormFunc = () => {};
+  const [showErrors, setShowErrors] = useState<boolean>(false);
+  const [showPassword, setShowPassword] = useState<boolean>(false);
+
+  const { values, errors, handleChange, handleSubmit } = useFormik({
+    initialValues: {
+      email: ``,
+      password: ``,
+      term: ``,
+    },
+    validationSchema: loginSchema,
+    onSubmit: loginWithFormFunc,
+  });
+
   return (
     <div className="w-full sm:w-7/12 md:w-7/12 h-3/6 sm:h-full flex flex-col items-center justify-between sm:justify-center">
       <div className="form-title-frame">
@@ -16,7 +34,7 @@ const FormLogin = () => {
         <p className="form-title">Hoşgeldiniz</p>
       </div>
 
-      <form className="form">
+      <form className="form" onSubmit={handleSubmit}>
         <div className="input-big-frame">
           <p className="input-title">Email</p>
           <div className="input-small-frame">
@@ -26,8 +44,12 @@ const FormLogin = () => {
               type="email"
               placeholder="whatinkitchen@info.com"
               id="email"
+              value={values.email}
+              onChange={handleChange}
             />
-            <VscError className="input-error-icon" />
+            {showErrors && errors.email ? (
+              <VscError className="input-error-icon" />
+            ) : null}
           </div>
         </div>
 
@@ -37,12 +59,19 @@ const FormLogin = () => {
             <IoKeyOutline className="input-info-icon ml-3 " />
             <input
               className="input"
-              type="password"
               placeholder="***********"
               id="password"
+              value={values.password}
+              onChange={handleChange}
+              type={`${showPassword ? "text" : "password"}`}
             />
-            <IoEyeOffOutline className="input-info-icon mr-4" />
-            <VscError className="input-error-icon" />
+            <IoEyeOffOutline
+              className="input-info-icon mr-4 cursor-pointer"
+              onClick={() => setShowPassword(!showPassword)}
+            />
+            {showErrors && errors.password ? (
+              <VscError className="input-error-icon" />
+            ) : null}
           </div>
         </div>
 
@@ -71,11 +100,25 @@ const FormLogin = () => {
         </div>
 
         <div className="robot-check-frame">
-          <input type="checkbox" name="" id="" className="robot-check-input" />
+          <input
+            type="checkbox"
+            name=""
+            id="term"
+            className="robot-check-input"
+            value={values.term}
+            onChange={handleChange}
+          />
           <p className="robot-check-info">Ben robot değilim</p>
+          {showErrors && errors.term ? (
+            <VscError className="text-red-400 absolute right-2" />
+          ) : null}
         </div>
 
-        <button type="submit" className="form-button">
+        <button
+          type="submit"
+          className="form-button"
+          onClick={() => setShowErrors(true)}
+        >
           Giriş
         </button>
 
