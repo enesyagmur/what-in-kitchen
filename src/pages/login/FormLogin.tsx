@@ -1,15 +1,20 @@
 import { MdOutlineMarkEmailRead } from "react-icons/md";
 import logo from "../../assets/logo1.png";
 import { IoEyeOffOutline, IoKeyOutline } from "react-icons/io5";
+import { FcQuestions } from "react-icons/fc";
 import google_logo from "../../assets/google-logo.png";
-import x_logo from "../../assets/x-logo.png";
 import github_logo from "../../assets/github-logo.png";
 import { useNavigate } from "react-router-dom";
 import { VscError } from "react-icons/vsc";
 import { useFormik } from "formik";
 import { loginSchema } from "../../formSchema/loginSchema";
 import { useState } from "react";
-import { signInWithEmailAndPassword } from "firebase/auth";
+import {
+  GithubAuthProvider,
+  GoogleAuthProvider,
+  signInWithEmailAndPassword,
+  signInWithPopup,
+} from "firebase/auth";
 import { auth } from "../../firebase/firebase";
 
 const FormLogin = () => {
@@ -30,9 +35,50 @@ const FormLogin = () => {
         navigate("/home");
       }
     } catch (error) {
-      console.error("Giriş sayfasında hata:", error);
+      console.error("Login formunda hata:", error);
     }
   };
+
+  const loginWithGoogle = async () => {
+    const provider = new GoogleAuthProvider();
+
+    try {
+      const data = await signInWithPopup(auth, provider);
+      const user = data.user;
+      if (user) {
+        navigate("/home");
+      }
+    } catch (error) {
+      console.error("Google ile girişite hata:", error);
+    }
+  };
+
+  const loginWithGithub = async () => {
+    const provider = new GithubAuthProvider();
+    try {
+      const data = await signInWithPopup(auth, provider);
+      const user = data.user;
+      if (user) {
+        navigate("/home");
+      }
+    } catch (error) {
+      console.error("Github ile girişte hata:", error);
+    }
+  };
+
+  const loginForOneTry = async () => {
+    const check = localStorage.getItem("try");
+
+    if (!check) {
+      localStorage.setItem("try", "1");
+      navigate("/home");
+    } else {
+      console.error(
+        "Misafir giriş hakkınız bitti. Hesap oluşturarak kullanabilirsiniz."
+      );
+    }
+  };
+
   const [showErrors, setShowErrors] = useState<boolean>(false);
   const [showPassword, setShowPassword] = useState<boolean>(false);
 
@@ -95,25 +141,27 @@ const FormLogin = () => {
         </div>
 
         <div className="w-full md:w-10/12 h-[30px] sm:h-[40px] flex items-center justify-center mt-2">
-          <div className="other-login-methods">
+          <div className="other-login-methods" onClick={loginWithGoogle}>
             <img
               src={google_logo}
               alt="login-method"
               className="login-methods-image"
+              title="Google ile giriş"
             />
           </div>
-          <div className="other-login-methods">
-            <img
-              src={x_logo}
-              alt="login-method"
-              className="login-methods-image"
-            />
+          <div
+            className="other-login-methods text-3xl"
+            title="Bir seferlik misafir girişi"
+            onClick={loginForOneTry}
+          >
+            <FcQuestions />
           </div>
-          <div className="other-login-methods">
+          <div className="other-login-methods" onClick={loginWithGithub}>
             <img
               src={github_logo}
               alt="login-method"
               className="login-methods-image"
+              title="Github ile giriş"
             />
           </div>
         </div>
