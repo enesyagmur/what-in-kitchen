@@ -8,24 +8,42 @@ import { VscError } from "react-icons/vsc";
 import { useState } from "react";
 import { useFormik } from "formik";
 import { registerSchema } from "../../formSchema/registerSchema";
+import { createUserWithEmailAndPassword } from "firebase/auth";
+import { auth } from "../../firebase/firebase";
 
 const FormRegister = () => {
   const navigate = useNavigate();
 
-  const registerWithFormFunc = () => {};
+  const registerWithFormFunc = async (values: {
+    email: string;
+    password: string;
+  }) => {
+    try {
+      const data = await createUserWithEmailAndPassword(
+        auth,
+        values.email,
+        values.password
+      );
+      const user = data.user;
+      if (user) {
+        navigate("/");
+      }
+    } catch (error) {
+      console.error("Kayıt sayfasında hata:", error);
+    }
+  };
 
   const [showErrors, setShowErrors] = useState<boolean>(false);
   const [showPassword, setShowPassword] = useState<boolean>(false);
 
   const { values, errors, handleChange, handleSubmit } = useFormik({
     initialValues: {
-      name: ``,
       email: ``,
       password: ``,
       term: ``,
     },
     validationSchema: registerSchema,
-    onSubmit: registerWithFormFunc,
+    onSubmit: (values) => registerWithFormFunc(values),
   });
 
   return (
@@ -38,20 +56,6 @@ const FormRegister = () => {
       <form className="form" onSubmit={handleSubmit}>
         <div className="input-big-frame">
           <p className="input-title">İsim Soyisim</p>
-          <div className="input-small-frame">
-            <BiUserCircle className="input-info-icon ml-3" />
-            <input
-              className="input pb-1"
-              type="text"
-              placeholder="Ahmet Yılmaz"
-              id="name"
-              value={values.name}
-              onChange={handleChange}
-            />
-            {showErrors && errors.name ? (
-              <VscError className="input-error-icon" />
-            ) : null}
-          </div>
         </div>
 
         <div className="input-big-frame">
