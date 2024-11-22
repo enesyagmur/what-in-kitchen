@@ -9,11 +9,30 @@ import { VscError } from "react-icons/vsc";
 import { useFormik } from "formik";
 import { loginSchema } from "../../formSchema/loginSchema";
 import { useState } from "react";
+import { signInWithEmailAndPassword } from "firebase/auth";
+import { auth } from "../../firebase/firebase";
 
 const FormLogin = () => {
   const navigate = useNavigate();
 
-  const loginWithFormFunc = () => {};
+  const loginWithFormFunc = async (values: {
+    email: string;
+    password: string;
+  }) => {
+    try {
+      const data = await signInWithEmailAndPassword(
+        auth,
+        values.email,
+        values.password
+      );
+      const user = data.user;
+      if (user) {
+        navigate("/home");
+      }
+    } catch (error) {
+      console.error("Giriş sayfasında hata:", error);
+    }
+  };
   const [showErrors, setShowErrors] = useState<boolean>(false);
   const [showPassword, setShowPassword] = useState<boolean>(false);
 
@@ -24,7 +43,7 @@ const FormLogin = () => {
       term: ``,
     },
     validationSchema: loginSchema,
-    onSubmit: loginWithFormFunc,
+    onSubmit: (values) => loginWithFormFunc(values),
   });
 
   return (
