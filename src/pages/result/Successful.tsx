@@ -19,7 +19,7 @@ const Successful: React.FC<SuccessfulProp> = ({ answer }) => {
     <div className="w-11/12 bg-green_custom text-cream_custom rounded-lg flex flex-col items-center relative">
       <div
         className="fixed w-[30px] md:w-[50px] h-[30px] md:h-[50px]  flex items-center justify-center cursor-pointer right-8 sm:right-14  md:right-16 lg:right-32  top-20 md:top-16 text-4xl text-brown_custom hover:text-red_custom "
-        onClick={() => navigate("/")}
+        onClick={() => navigate("/home")}
       >
         <TiArrowBack />
       </div>

@@ -16,7 +16,7 @@ const Unsuccessful: React.FC<UnsuccessfulProp> = ({ error }) => {
 
       <button
         className="absolute right-6 top-2 text-4xl  hover:text-brown_custom"
-        onClick={() => navigate("/")}
+        onClick={() => navigate("/home")}
       >
         <TiArrowBack />
       </button>

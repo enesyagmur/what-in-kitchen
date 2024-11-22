@@ -11,8 +11,8 @@ function App() {
     <>
       <BrowserRouter>
         <Routes>
-          <Route element={<Home />} path="/" />
-          <Route element={<Login />} path="/login" />
+          <Route element={<Home />} path="/home" />
+          <Route element={<Login />} path="/" />
           <Route element={<Register />} path="/register" />
           <Route element={<Result />} path="/result" />
           <Route element={<NotFound />} path="*" />
@@ -24,7 +24,7 @@ function App() {
 
 export default App;
 
-//DURUM:
-/*login register işlemleri
-
+//DURUM:firebase bağlantılarını yapacağım
+/*
+notfound sayfasında giriş yapıldıysa home a - yapılmadıysa login e gönderme kontrolü yapmalıyım
  */
