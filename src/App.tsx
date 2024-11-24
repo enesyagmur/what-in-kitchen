@@ -24,7 +24,9 @@ function App() {
 
 export default App;
 
-//DURUM:firebase bağlantılarını yapacağım
+//DURUM:logout işlemi
 /*
+kullanıcı ismini tüm sayfalara ve componentlere ekleme ve responsve yapma
+mail ile girişte kullanıcı ismi ile kayıt
 notfound sayfasında giriş yapıldıysa home a - yapılmadıysa login e gönderme kontrolü yapmalıyım
  */
