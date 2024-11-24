@@ -24,9 +24,9 @@ function App() {
 
 export default App;
 
-//DURUM:logout işlemi
+//DURUM:
 /*
-kullanıcı ismini tüm sayfalara ve componentlere ekleme ve responsve yapma
+
 mail ile girişte kullanıcı ismi ile kayıt
 notfound sayfasında giriş yapıldıysa home a - yapılmadıysa login e gönderme kontrolü yapmalıyım
  */

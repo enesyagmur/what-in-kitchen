@@ -8,12 +8,21 @@ export const resultSlice = createSlice({
   reducers: {
     updateResult: (state, action: { payload: string }) => {
       const text = action.payload;
-      const cleanedText = text.replace(/^```json\s*|\s*```$/g, "");
-      state.answer = JSON.parse(cleanedText);
+      const cleanedText = text.match(/```json\n?(.*?)\n?```/s);
+
+      if (cleanedText && cleanedText[1]) {
+        const jsonResult = cleanedText[1].trim();
+        state.answer = JSON.parse(jsonResult);
+      } else {
+        state.answer = [];
+      }
+    },
+    resetResult: (state) => {
+      state.answer = [];
     },
   },
 });
 
-export const { updateResult } = resultSlice.actions;
+export const { updateResult, resetResult } = resultSlice.actions;
 
 export default resultSlice.reducer;

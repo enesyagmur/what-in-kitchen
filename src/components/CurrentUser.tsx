@@ -51,20 +51,20 @@ const CurrentUser: React.FC<userProps> = ({ list, setList }) => {
         <p className="text-xl">{user}</p>
 
         <div
-          className={`w-32 h-full flex items-center text-3xl ${
-            list.length > 0 ? "justify-evenly" : "justify-end"
+          className={` h-full flex w-32 items-center text-3xl text-cream_custom  ${
+            list.length > 0 ? " justify-evenly" : "justify-end"
           }`}
         >
           {list.length > 0 && (
             <AiFillHome
-              className="ml-3 text-brown_custom  hover:text-red_custom cursor-pointer"
+              className="ml-3 cursor-pointer hover:text-red_custom"
               title="Anasayfaya dön"
               onClick={() => setList([])}
             />
           )}
 
           <IoMdLogOut
-            className="ml-3 text-brown_custom  hover:text-red_custom cursor-pointer "
+            className="ml-3  cursor-pointer hover:text-red_custom"
             title="Oturumu kapat"
             onClick={handleLogout}
           />

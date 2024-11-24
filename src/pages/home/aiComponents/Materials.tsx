@@ -8,6 +8,7 @@ import Icecek from "../../../assets/materials-images/icecek.png";
 import Meze from "../../../assets/materials-images/meze.png";
 import Atistirmalik from "../../../assets/materials-images/atistirmalik.png";
 import Farketmez from "../../../assets/materials-images/farketmez.png";
+import Diyet from "../../../assets/materials-images/diyet.png";
 import { useEffect, useState } from "react";
 import callGeminiAPI from "../../../Api/aiCall";
 import { useNavigate } from "react-router-dom";
@@ -49,6 +50,10 @@ const Materials: React.FC<materialsProps> = ({ list }) => {
       selected: true,
     },
     {
+      name: "Diyet",
+      selected: false,
+    },
+    {
       name: "Vegan",
       selected: false,
     },
@@ -57,7 +62,7 @@ const Materials: React.FC<materialsProps> = ({ list }) => {
       selected: false,
     },
   ]);
-  const foodTypeImages = [Standart, Vegan, Vejeteryan];
+  const foodTypeImages = [Standart, Diyet, Vegan, Vejeteryan];
 
   const createAsk = () => {
     const askArray: string[] = [];
@@ -76,7 +81,10 @@ const Materials: React.FC<materialsProps> = ({ list }) => {
         askArray.push(element.name);
       }
     });
-    askArray.push("tariifleri bul ve json formatında dönüş yap");
+    askArray.push(
+      "tariiflerini bul ve json formatına çevirerek her tarif için name:string, ingredients:string[], instructions:string[], parametreleri ile dönüş yap"
+    );
+    console.log(askArray);
 
     return askArray.join(" ");
   };
@@ -98,7 +106,12 @@ const Materials: React.FC<materialsProps> = ({ list }) => {
     const result: string | unknown = await fetchApi();
 
     if (typeof result === "string") {
-      if (result.includes("```json")) {
+      if (
+        result.includes("```json") &&
+        result.includes("name") &&
+        result.includes("ingredients") &&
+        result.includes("instructions")
+      ) {
         dispatch(updateResult(result));
         setLoading(false);
 
@@ -137,7 +150,10 @@ const Materials: React.FC<materialsProps> = ({ list }) => {
     <div className="w-full h-full flex flex-col md:flex-row items-center justify-evenly">
       <div className="w-11/12 md:w-5/12 lg:w-6/12 h-2/6 md:h-5/6 flex flex-wrap justify-between md:justify-evenly items-center pl-8 md:pl-0">
         {list.map((element, index) => (
-          <div className="w-4/12 md:w-5/12 h-1/6 flex flex-col items-start justify-center">
+          <div
+            className="w-4/12 md:w-5/12 h-1/6 flex flex-col items-start justify-center"
+            key={element + index}
+          >
             <div className="w-full h-4/6 flex items-center justify-start">
               <p className="text-cream_custom">{index + 1}.</p>
               <p className="bg-transparent text-cream_custom w-10/12 text-start text-[12px] sm:text-sm  lg:text-lg font-semibold  p-1 capitalize">
@@ -162,8 +178,8 @@ const Materials: React.FC<materialsProps> = ({ list }) => {
         <div className="w-11/12 h-1/5 flex items-center justify-between">
           {foodType.map((item, index) => (
             <div
-              className={`food-option-frame ${
-                foodType[index].selected ? "border-2 rounded-lg" : "border-none"
+              className={`w-[24%] h-[90px] flex items-center justify-start rounded-lg cursor-pointer box-border ${
+                foodType[index].selected ? "border-2 " : "border-none "
               }`}
               key={item.name}
               onClick={() =>
@@ -177,7 +193,7 @@ const Materials: React.FC<materialsProps> = ({ list }) => {
             >
               <img
                 src={foodTypeImages[index]}
-                className="food-option-frame-image"
+                className="w-[40px] md:w-[50px] lg:w-[60px] h-[40px] md:h-[50px] lg:h-[60px] object-cover"
                 alt="Tarif Tipi"
               />
               <p className="text-cream_custom ml-0 sm:ml-1 text-[12px] sm:text-sm">
@@ -194,8 +210,8 @@ const Materials: React.FC<materialsProps> = ({ list }) => {
         <div className="w-11/12 h-3/5 flex items-center justify-start flex-wrap ">
           {foodChoice.map((item, index) => (
             <div
-              className={`food-option-frame  ${
-                item.selected === true ? "border-2 rounded-lg" : "border-none"
+              className={`w-4/12 h-[90px] flex items-center justify-start cursor-pointer rounded-lg  ${
+                item.selected === true ? "border-2 " : "border-none "
               }`}
               key={index}
               onClick={() =>
@@ -210,7 +226,7 @@ const Materials: React.FC<materialsProps> = ({ list }) => {
               <img
                 src={foodChoiceImages[index]}
                 alt=""
-                className="food-option-frame-image"
+                className="w-[50px] md:w-[60px] lg:w-[70px] h-[50px] md:h-[60px] lg:h-[70px] object-cover"
               />
               <p className="text-cream_custom ml-0 sm:ml-1 text-[12px] sm:text-sm">
                 {item.name}

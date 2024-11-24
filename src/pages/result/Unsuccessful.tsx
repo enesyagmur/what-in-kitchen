@@ -1,4 +1,4 @@
-import { TiArrowBack } from "react-icons/ti";
+import { AiFillHome } from "react-icons/ai";
 import { useNavigate } from "react-router-dom";
 
 type UnsuccessfulProp = {
@@ -18,7 +18,7 @@ const Unsuccessful: React.FC<UnsuccessfulProp> = ({ error }) => {
         className="absolute right-6 top-2 text-4xl  hover:text-brown_custom"
         onClick={() => navigate("/home")}
       >
-        <TiArrowBack />
+        <AiFillHome />
       </button>
     </div>
   );

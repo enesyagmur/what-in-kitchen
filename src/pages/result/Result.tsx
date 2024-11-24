@@ -24,12 +24,15 @@ const Result = () => {
     backgroundRepeat: "repeat-y",
   };
 
+  console.log(answer);
+  console.log(errorResult);
+
   return (
     <div
       style={backgroundStyle}
       className="w-full min-h-screen flex items-center justify-center relative py-8"
     >
-      {answer && answer.length > 0 ? (
+      {answer !== null && answer.length > 0 ? (
         <Successful answer={answer} />
       ) : (
         <Unsuccessful error={errorResult} />
