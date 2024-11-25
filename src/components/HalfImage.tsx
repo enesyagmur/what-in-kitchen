@@ -1,7 +1,8 @@
-import image1 from "../assets/loginbg1.png";
-import image2 from "../assets/loginbg2.png";
-import image3 from "../assets/loginbg3.png";
-import image4 from "../assets/loginbg4.png";
+import image1 from "../assets/login-bg/loginbg1.png";
+import image2 from "../assets/login-bg/loginbg2.png";
+import image3 from "../assets/login-bg/loginbg3.png";
+import image4 from "../assets/login-bg/loginbg4.png";
+
 import { useState } from "react";
 import { IoIosInformationCircleOutline } from "react-icons/io";
 

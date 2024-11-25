@@ -2,11 +2,27 @@ import { useNavigate } from "react-router-dom";
 import { AiFillHome } from "react-icons/ai";
 import getRandomImage from "../../components/RandomBg";
 import { useEffect, useState } from "react";
+import { onAuthStateChanged } from "firebase/auth";
+import { auth } from "../../firebase/firebase";
+import { FaUser } from "react-icons/fa";
 
 const NotFound = () => {
   const [randomImage, setRandomImage] = useState<string>("");
+  const [user, setUser] = useState<boolean>(false);
 
   const navigate = useNavigate();
+
+  const takeCurrentUser = async () => {
+    return new Promise(() => {
+      onAuthStateChanged(auth, (user) => {
+        if (user) {
+          setUser(true);
+        } else if (user!) {
+          setUser(false);
+        }
+      });
+    });
+  };
 
   useEffect(() => {
     const fetchImage = async () => {
@@ -14,6 +30,7 @@ const NotFound = () => {
       setRandomImage(imageUrl);
     };
     fetchImage();
+    takeCurrentUser();
   }, []);
 
   const backgroundStyle = {
@@ -32,15 +49,29 @@ const NotFound = () => {
           <p className=" font-bold text-2xl md:text-3xl lg:text-4xl text-cream_custom ">
             Tühh, yolumuzu kaybettik galiba!
           </p>
-          <p className="text-sm text-cream_custom mt-2">
-            Mutfağına uygun tarifi bulmak için hemen anasayfaya dönebilirsin.
-          </p>
+          {user ? (
+            <p className="text-sm text-cream_custom mt-2">
+              Mutfağına uygun tarifi bulmak için hemen anasayfaya dönebilirsin.
+            </p>
+          ) : (
+            <p className="text-sm text-cream_custom mt-2">
+              Mutfağına uygun tarifi bulmak için hemen giriş yaparak
+              başlayabilirsin.
+            </p>
+          )}
         </div>
         <p className="w-full h-1/6 text-4xl  md:text-6xl text-cream_custom flex items-center justify-center ">
-          <AiFillHome
-            className="cursor-pointer hover:text-green_custom"
-            onClick={() => navigate("/home")}
-          />
+          {user ? (
+            <AiFillHome
+              className="cursor-pointer hover:text-green_custom"
+              onClick={() => navigate("/home")}
+            />
+          ) : (
+            <FaUser
+              className="cursor-pointer hover:text-green_custom"
+              onClick={() => navigate("/")}
+            />
+          )}
         </p>
       </div>
     </div>

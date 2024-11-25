@@ -24,9 +24,10 @@ function App() {
 
 export default App;
 
-//DURUM:
+//DURUM:notfound sayfasında giriş yapıldıysa home a - yapılmadıysa login e gönderme kontrolü yapmalıyım
+
 /*
 
 mail ile girişte kullanıcı ismi ile kayıt
-notfound sayfasında giriş yapıldıysa home a - yapılmadıysa login e gönderme kontrolü yapmalıyım
+şifremi unuttum
  */
