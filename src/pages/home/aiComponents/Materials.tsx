@@ -134,7 +134,7 @@ const Materials: React.FC<materialsProps> = ({ list }) => {
         );
         navigate("/result");
       }
-    }, 8000);
+    }, 15000);
 
     return () => clearTimeout(timer);
   }, [loading]);

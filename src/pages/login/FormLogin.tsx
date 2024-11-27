@@ -18,6 +18,7 @@ import {
 import { auth } from "../../firebase/firebase";
 import { CgPassword } from "react-icons/cg";
 import { LuMailX } from "react-icons/lu";
+import { number } from "yup";
 
 const FormLogin = () => {
   const navigate = useNavigate();
@@ -69,15 +70,17 @@ const FormLogin = () => {
     }
   };
 
-  const loginForOneTry = async () => {
+  const loginForGuest = async () => {
     const check = localStorage.getItem("try");
 
     if (!check) {
       localStorage.setItem("try", "1");
       navigate("/home");
-    } else {
+    } else if (Number(check) < 5) {
+      navigate("/home");
+    } else if (Number(check) === 5) {
       console.error(
-        "Misafir giriş hakkınız bitti. Hesap oluşturarak kullanabilirsiniz."
+        "Misafir giriş hakkınız bitti. Hesap oluşturarak tarif bulma yardımcınızı kullanmaya devam edebilirsiniz."
       );
     }
   };
@@ -172,8 +175,8 @@ const FormLogin = () => {
           </div>
           <div
             className="other-login-methods text-3xl"
-            title="Bir seferlik misafir girişi"
-            onClick={loginForOneTry}
+            title="Misafir girişi"
+            onClick={loginForGuest}
           >
             <FcQuestions />
           </div>

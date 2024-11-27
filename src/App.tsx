@@ -28,6 +28,8 @@ export default App;
 
 /*
 
-mail ile girişte kullanıcı ismi ile kayıt
+sonuç bekleme süresini uzat
+hataları console a yazmak yerine toastify kullanabilirim
+resim yükleme hızını arttırabilirim ya da randomImage yerine her sayfa için sabit resim ayarlayabilirim
 şifremi unuttum
  */

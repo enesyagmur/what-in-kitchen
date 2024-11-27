@@ -19,10 +19,15 @@ const CurrentUser: React.FC<userProps> = ({ list, setList }) => {
       onAuthStateChanged(auth, (user) => {
         if (user && typeof user.displayName === "string") {
           resolve(user.displayName);
-        } else if (user! && localStorage.getItem("try")) {
-          resolve("Misafir");
-        } else {
-          window.location.href = "/";
+        } else if (!user && localStorage.getItem("try")) {
+          const tryied = localStorage.getItem("try");
+          if (Number(tryied) < 5) {
+            const plusTry = Number(tryied) + 1;
+            localStorage.setItem("try", String(plusTry));
+            resolve("Misafir");
+          } else {
+            window.location.href = "/";
+          }
         }
       });
     });
