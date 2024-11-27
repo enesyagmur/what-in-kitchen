@@ -24,7 +24,7 @@ function App() {
 
 export default App;
 
-//DURUM:notfound sayfasında giriş yapıldıysa home a - yapılmadıysa login e gönderme kontrolü yapmalıyım
+//DURUM:
 
 /*
 

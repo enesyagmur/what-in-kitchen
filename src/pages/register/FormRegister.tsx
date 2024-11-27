@@ -1,20 +1,21 @@
-import { MdOutlineMarkEmailRead } from "react-icons/md";
+import { CiMail } from "react-icons/ci";
+
 import logo from "../../assets/logo1.png";
 import { IoEyeOffOutline, IoKeyOutline } from "react-icons/io5";
-
 import { useNavigate } from "react-router-dom";
-import { BiUserCircle } from "react-icons/bi";
+import { CiUser } from "react-icons/ci";
 import { VscError } from "react-icons/vsc";
 import { useState } from "react";
 import { useFormik } from "formik";
 import { registerSchema } from "../../formSchema/registerSchema";
-import { createUserWithEmailAndPassword } from "firebase/auth";
+import { createUserWithEmailAndPassword, updateProfile } from "firebase/auth";
 import { auth } from "../../firebase/firebase";
 
 const FormRegister = () => {
   const navigate = useNavigate();
 
   const registerWithFormFunc = async (values: {
+    user: string;
     email: string;
     password: string;
   }) => {
@@ -26,6 +27,9 @@ const FormRegister = () => {
       );
       const user = data.user;
       if (user) {
+        await updateProfile(user, {
+          displayName: values.user,
+        });
         navigate("/");
       }
     } catch (error) {
@@ -38,6 +42,7 @@ const FormRegister = () => {
 
   const { values, errors, handleChange, handleSubmit } = useFormik({
     initialValues: {
+      user: ``,
       email: ``,
       password: ``,
       term: ``,
@@ -56,12 +61,27 @@ const FormRegister = () => {
       <form className="form" onSubmit={handleSubmit}>
         <div className="input-big-frame">
           <p className="input-title">İsim Soyisim</p>
+          <div className="input-small-frame">
+            <CiUser className="input-icon ml-3" />
+            <input
+              className="input pb-1"
+              type="text"
+              placeholder="Mehmet Yılmaz"
+              id="user"
+              value={values.user}
+              onChange={handleChange}
+            />
+
+            {showErrors && errors.user ? (
+              <VscError className="input-error-icon" title="Boş bırakılamaz" />
+            ) : null}
+          </div>
         </div>
 
         <div className="input-big-frame">
           <p className="input-title">Email</p>
           <div className="input-small-frame">
-            <MdOutlineMarkEmailRead className="input-icon ml-3" />
+            <CiMail className="input-icon ml-3" />
             <input
               className="input pb-1"
               type="email"
@@ -72,7 +92,7 @@ const FormRegister = () => {
             />
 
             {showErrors && errors.email ? (
-              <VscError className="input-error-icon" />
+              <VscError className="input-error-icon" title="Boş bırakılamaz" />
             ) : null}
           </div>
         </div>
@@ -91,11 +111,12 @@ const FormRegister = () => {
             />
             <IoEyeOffOutline
               className="input-info-icon mr-4 cursor-pointer"
+              title="Şifreyi göster"
               onClick={() => setShowPassword(!showPassword)}
             />
 
             {showErrors && errors.password ? (
-              <VscError className="input-error-icon" />
+              <VscError className="input-error-icon" title="Boş bırakılamaz" />
             ) : null}
           </div>
         </div>
@@ -110,7 +131,10 @@ const FormRegister = () => {
           />
           <p className="robot-check-info">Ben robot değilim</p>
           {showErrors && errors.term ? (
-            <VscError className="text-red-400 absolute right-2" />
+            <VscError
+              className="text-red-400 absolute right-2"
+              title="Boş bırakılamaz"
+            />
           ) : null}
         </div>
 
