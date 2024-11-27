@@ -18,7 +18,6 @@ import {
 import { auth } from "../../firebase/firebase";
 import { CgPassword } from "react-icons/cg";
 import { LuMailX } from "react-icons/lu";
-import { number } from "yup";
 
 const FormLogin = () => {
   const navigate = useNavigate();
@@ -72,7 +71,6 @@ const FormLogin = () => {
 
   const loginForGuest = () => {
     const check = localStorage.getItem("try");
-    console.log(check);
 
     if (!check) {
       localStorage.setItem("try", "1");

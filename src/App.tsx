@@ -24,10 +24,10 @@ function App() {
 
 export default App;
 
-//DURUM:misafir girişi ile ilgili düzenleme
+//DURUM:resim optimizasyonu
 
 /*
 hataları console a yazmak yerine toastify kullanabilirim
-resim yükleme hızını arttırabilirim ya da randomImage yerine her sayfa için sabit resim ayarlayabilirim
+
 şifremi unuttum
  */

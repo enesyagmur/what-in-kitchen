@@ -1,13 +1,12 @@
 import { useNavigate } from "react-router-dom";
 import { AiFillHome } from "react-icons/ai";
-import getRandomImage from "../../components/RandomBg";
+import notFoundBg from "../../assets/home-images/homebg3.png";
 import { useEffect, useState } from "react";
 import { onAuthStateChanged } from "firebase/auth";
 import { auth } from "../../firebase/firebase";
 import { FaUser } from "react-icons/fa";
 
 const NotFound = () => {
-  const [randomImage, setRandomImage] = useState<string>("");
   const [user, setUser] = useState<boolean>(false);
 
   const navigate = useNavigate();
@@ -25,16 +24,11 @@ const NotFound = () => {
   };
 
   useEffect(() => {
-    const fetchImage = async () => {
-      const imageUrl: string = await getRandomImage();
-      setRandomImage(imageUrl);
-    };
-    fetchImage();
     takeCurrentUser();
   }, []);
 
   const backgroundStyle = {
-    backgroundImage: `url(${randomImage})`,
+    backgroundImage: `url(${notFoundBg})`,
     backgroundSize: "cover",
     backgroundRepeat: "repeat-y",
   };

@@ -1,16 +1,9 @@
-import image1 from "../assets/login-bg/loginbg1.png";
-import image2 from "../assets/login-bg/loginbg2.png";
-import image3 from "../assets/login-bg/loginbg3.png";
-import image4 from "../assets/login-bg/loginbg4.png";
+import howItWorksBg from "../assets/login-bg/loginbg3.png";
 
 import { useState } from "react";
 import { IoIosInformationCircleOutline } from "react-icons/io";
 
 const HalfImage = () => {
-  const [randomNumber] = useState<number>(() => {
-    return Math.floor(Math.random() * 4) + 1;
-  });
-
   const [showHowItWorks, setShowHowItWorks] = useState<boolean>(false);
 
   return (
@@ -33,15 +26,7 @@ const HalfImage = () => {
         </div>
       ) : (
         <img
-          src={
-            randomNumber === 1
-              ? image1
-              : randomNumber === 2
-              ? image2
-              : randomNumber === 3
-              ? image3
-              : image4
-          }
+          src={howItWorksBg}
           alt="how it works"
           className="w-full h-full bg-cover rounded-lg"
         />

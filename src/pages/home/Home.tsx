@@ -1,30 +1,23 @@
 import { useEffect, useState } from "react";
 
 import Ai from "./Ai";
-import getRandomImage from "../../components/RandomBg";
+import homeBg from "../../assets/home-images/homebg4.png";
 import { useDispatch } from "react-redux";
 import { updateError } from "../../redux/errorSlice";
 import { resetResult } from "../../redux/resultSlice";
 
 const Home = () => {
-  const [randomImage, setRandomImage] = useState<string>("");
   const [list, setList] = useState<string[]>([]);
   const dispatch = useDispatch();
 
   useEffect(() => {
-    const fetchImage = async () => {
-      const imageUrl: string = await getRandomImage();
-      setRandomImage(imageUrl);
-    };
-    fetchImage();
-
     setList([]);
     dispatch(updateError(""));
     dispatch(resetResult());
   }, []);
 
   const backgroundStyle = {
-    backgroundImage: `url(${randomImage})`,
+    backgroundImage: `url(${homeBg})`,
     backgroundRepeat: "repeat-y",
   };
 

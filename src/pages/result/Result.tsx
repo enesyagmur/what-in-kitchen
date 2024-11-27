@@ -1,31 +1,17 @@
-import { useEffect, useState } from "react";
-import getRandomImage from "../../components/RandomBg";
+import resultBg from "../../assets/home-images/homebg6.png";
 import { useSelector } from "react-redux";
 import { rootState } from "../../redux/store";
 import Successful from "./Successful";
 import Unsuccessful from "./Unsuccessful";
 
 const Result = () => {
-  const [randomImage, setRandomImage] = useState<string>("");
   const answer = useSelector((state: rootState) => state.apiAnswer.answer);
   const errorResult = useSelector((state: rootState) => state.sliceError.error);
 
-  const fetchImage = async () => {
-    const imageUrl: string = await getRandomImage();
-    setRandomImage(imageUrl);
-  };
-
-  useEffect(() => {
-    fetchImage();
-  }, []);
-
   const backgroundStyle = {
-    backgroundImage: `url(${randomImage})`,
+    backgroundImage: `url(${resultBg})`,
     backgroundRepeat: "repeat-y",
   };
-
-  console.log(answer);
-  console.log(errorResult);
 
   return (
     <div
