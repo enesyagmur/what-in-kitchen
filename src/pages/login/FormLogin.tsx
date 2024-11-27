@@ -16,6 +16,8 @@ import {
   signInWithPopup,
 } from "firebase/auth";
 import { auth } from "../../firebase/firebase";
+import { CgPassword } from "react-icons/cg";
+import { LuMailX } from "react-icons/lu";
 
 const FormLogin = () => {
   const navigate = useNavigate();
@@ -36,6 +38,7 @@ const FormLogin = () => {
       }
     } catch (error) {
       console.error("Login formunda hata:", error);
+      setUserDidntFindError(true);
     }
   };
 
@@ -81,6 +84,7 @@ const FormLogin = () => {
 
   const [showErrors, setShowErrors] = useState<boolean>(false);
   const [showPassword, setShowPassword] = useState<boolean>(false);
+  const [userDidntFindError, setUserDidntFindError] = useState<boolean>(false);
 
   const { values, errors, handleChange, handleSubmit } = useFormik({
     initialValues: {
@@ -112,8 +116,15 @@ const FormLogin = () => {
               value={values.email}
               onChange={handleChange}
             />
-            {showErrors && errors.email ? (
-              <VscError className="input-error-icon" />
+            {showErrors && values.email === "" ? (
+              <VscError className="input-error-icon" title="Boş bırakılamaz" />
+            ) : null}
+
+            {showErrors && errors.email && values.email !== "" ? (
+              <LuMailX
+                className="input-error-icon"
+                title="Girilen mail geçersiz"
+              />
             ) : null}
           </div>
         </div>
@@ -132,10 +143,20 @@ const FormLogin = () => {
             />
             <IoEyeOffOutline
               className="input-info-icon mr-4 cursor-pointer"
+              title="Şifreyi göster/gizle"
               onClick={() => setShowPassword(!showPassword)}
             />
-            {showErrors && errors.password ? (
-              <VscError className="input-error-icon" />
+            {showErrors && values.password === "" ? (
+              <VscError className="input-error-icon" title="Boş bırakılamaz" />
+            ) : null}
+
+            {showErrors &&
+            values.password !== "" &&
+            values.password.length < 8 ? (
+              <CgPassword
+                className="input-error-icon"
+                title="Girilen şifre en az 8 karakter olmalı"
+              />
             ) : null}
           </div>
         </div>
@@ -177,7 +198,10 @@ const FormLogin = () => {
           />
           <p className="robot-check-info">Ben robot değilim</p>
           {showErrors && errors.term ? (
-            <VscError className="text-red-400 absolute right-2" />
+            <VscError
+              className="text-red-400 absolute right-2"
+              title="Boş bırakılamaz"
+            />
           ) : null}
         </div>
 
@@ -190,11 +214,18 @@ const FormLogin = () => {
         </button>
 
         <p
-          className="form-page-change-button"
+          className="form-page-change-button "
           onClick={() => navigate("/register")}
         >
           Email ile Kayıt
         </p>
+
+        {showErrors && userDidntFindError && (
+          <p className="w-10/12 text-red-400 text-center">
+            Kullanıcı bilgileri hatalı ya da ilettiğiniz bilgilere ait kullanıcı
+            bulunamadı
+          </p>
+        )}
       </form>
     </div>
   );

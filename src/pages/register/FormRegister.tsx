@@ -10,6 +10,9 @@ import { useFormik } from "formik";
 import { registerSchema } from "../../formSchema/registerSchema";
 import { createUserWithEmailAndPassword, updateProfile } from "firebase/auth";
 import { auth } from "../../firebase/firebase";
+import { LuSpace } from "react-icons/lu";
+import { LuMailX } from "react-icons/lu";
+import { CgPassword } from "react-icons/cg";
 
 const FormRegister = () => {
   const navigate = useNavigate();
@@ -72,8 +75,15 @@ const FormRegister = () => {
               onChange={handleChange}
             />
 
-            {showErrors && errors.user ? (
+            {showErrors && errors.user && values.user === "" ? (
               <VscError className="input-error-icon" title="Boş bırakılamaz" />
+            ) : null}
+
+            {showErrors && errors.user && !values.user.includes(" ") ? (
+              <LuSpace
+                className="input-error-icon"
+                title="İsim ve soyisim ayrı yazılmalı"
+              />
             ) : null}
           </div>
         </div>
@@ -91,8 +101,15 @@ const FormRegister = () => {
               onChange={handleChange}
             />
 
-            {showErrors && errors.email ? (
+            {showErrors && values.email === "" ? (
               <VscError className="input-error-icon" title="Boş bırakılamaz" />
+            ) : null}
+
+            {showErrors && errors.email && values.email !== "" ? (
+              <LuMailX
+                className="input-error-icon"
+                title="Girilen mail geçersiz"
+              />
             ) : null}
           </div>
         </div>
@@ -111,12 +128,21 @@ const FormRegister = () => {
             />
             <IoEyeOffOutline
               className="input-info-icon mr-4 cursor-pointer"
-              title="Şifreyi göster"
+              title="Şifreyi göster/gizle"
               onClick={() => setShowPassword(!showPassword)}
             />
 
-            {showErrors && errors.password ? (
+            {showErrors && values.password === "" ? (
               <VscError className="input-error-icon" title="Boş bırakılamaz" />
+            ) : null}
+
+            {showErrors &&
+            values.password !== "" &&
+            values.password.length < 8 ? (
+              <CgPassword
+                className="input-error-icon"
+                title="Girilen şifre en az 8 karakter olmalı"
+              />
             ) : null}
           </div>
         </div>
