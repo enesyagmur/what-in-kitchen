@@ -21,7 +21,7 @@ const CurrentUser: React.FC<userProps> = ({ list, setList }) => {
           resolve(user.displayName);
         } else if (!user && localStorage.getItem("try")) {
           const tryied = localStorage.getItem("try");
-          if (Number(tryied) < 5) {
+          if (Number(tryied) < 4) {
             const plusTry = Number(tryied) + 1;
             localStorage.setItem("try", String(plusTry));
             resolve("Misafir");

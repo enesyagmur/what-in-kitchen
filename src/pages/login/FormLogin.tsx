@@ -70,15 +70,16 @@ const FormLogin = () => {
     }
   };
 
-  const loginForGuest = async () => {
+  const loginForGuest = () => {
     const check = localStorage.getItem("try");
+    console.log(check);
 
     if (!check) {
       localStorage.setItem("try", "1");
       navigate("/home");
-    } else if (Number(check) < 5) {
+    } else if (Number(check) < 4) {
       navigate("/home");
-    } else if (Number(check) === 5) {
+    } else if (Number(check) === 4) {
       console.error(
         "Misafir giriş hakkınız bitti. Hesap oluşturarak tarif bulma yardımcınızı kullanmaya devam edebilirsiniz."
       );

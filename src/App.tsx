@@ -24,11 +24,9 @@ function App() {
 
 export default App;
 
-//DURUM:
+//DURUM:misafir girişi ile ilgili düzenleme
 
 /*
-
-sonuç bekleme süresini uzat
 hataları console a yazmak yerine toastify kullanabilirim
 resim yükleme hızını arttırabilirim ya da randomImage yerine her sayfa için sabit resim ayarlayabilirim
 şifremi unuttum
