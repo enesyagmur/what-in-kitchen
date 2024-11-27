@@ -9,7 +9,7 @@
   @apply w-[30px] sm:w-[40px] h-[30px] sm:h-[40px] object-cover;
 }
 .form-title {
-  @apply font-bold text-2xl md:text-4xl text-center;
+  @apply font-bold text-2xl md:text-4xl text-center text-green_custom;
 }
 
 .form {

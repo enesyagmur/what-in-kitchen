@@ -82,7 +82,7 @@ const Materials: React.FC<materialsProps> = ({ list }) => {
       }
     });
     askArray.push(
-      "tariiflerini bul ve json formatına çevirerek her tarif için name:string, ingredients:string[], instructions:string[], parametreleri ile dönüş yap"
+      "tariifleri bul ve json formatına çevirerek her tarif için name:string, ingredients:string[], instructions:string[], parametreleri ile dönüş yap"
     );
     console.log(askArray);
 

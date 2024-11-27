@@ -1,6 +1,7 @@
 import axios from "axios";
 
-const apiKey = "AIzaSyAuACgTX4FvpMLOJTta8x7Htc8ajxQqXy0";
+const apiKey2 = "AIzaSyAuACgTX4FvpMLOJTta8x7Htc8ajxQqXy0";
+const apiKey = "AIzaSyB-tT2A8b6FOCVd4vYajoDrXiiY-UNfvQs";
 
 const callGeminiAPI = async (ask: string) => {
   const url =
