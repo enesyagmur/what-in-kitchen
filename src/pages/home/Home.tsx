@@ -8,7 +8,7 @@ import { resetResult } from "../../redux/resultSlice";
 
 const Home = () => {
   const [randomImage, setRandomImage] = useState<string>("");
-  const [list, setList] = useState<string>([]);
+  const [list, setList] = useState<string[]>([]);
   const dispatch = useDispatch();
 
   useEffect(() => {

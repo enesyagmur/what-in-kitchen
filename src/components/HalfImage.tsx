@@ -7,7 +7,7 @@ import { useState } from "react";
 import { IoIosInformationCircleOutline } from "react-icons/io";
 
 const HalfImage = () => {
-  const [randomNumber, setRandomNumber] = useState<number>(() => {
+  const [randomNumber] = useState<number>(() => {
     return Math.floor(Math.random() * 4) + 1;
   });
 
