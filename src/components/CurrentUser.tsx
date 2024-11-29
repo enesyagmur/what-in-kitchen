@@ -1,16 +1,11 @@
 import { onAuthStateChanged } from "firebase/auth";
 import { auth } from "../firebase/firebase";
-import React, { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import { IoMdLogOut } from "react-icons/io";
 import { AiFillHome } from "react-icons/ai";
 import { useNavigate } from "react-router-dom";
 
-type userProps = {
-  list: string[];
-  setList: React.Dispatch<React.SetStateAction<string[]>>;
-};
-
-const CurrentUser: React.FC<userProps> = ({ list, setList }) => {
+const CurrentUser = () => {
   const [user, setUser] = useState<string>("");
   const navigate = useNavigate();
 
@@ -21,7 +16,7 @@ const CurrentUser: React.FC<userProps> = ({ list, setList }) => {
           resolve(user.displayName);
         } else if (!user && localStorage.getItem("try")) {
           const tryied = localStorage.getItem("try");
-          if (Number(tryied) < 4) {
+          if (Number(tryied) < 2) {
             const plusTry = Number(tryied) + 1;
             localStorage.setItem("try", String(plusTry));
             resolve("Misafir");

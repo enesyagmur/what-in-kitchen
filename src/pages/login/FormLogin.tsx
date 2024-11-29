@@ -106,9 +106,9 @@ const FormLogin = () => {
     if (!check) {
       localStorage.setItem("try", "1");
       navigate("/home");
-    } else if (Number(check) < 4) {
+    } else if (Number(check) < 2) {
       navigate("/home");
-    } else if (Number(check) === 4) {
+    } else if (Number(check) === 2) {
       toast.error(
         `Misafir giriş hakkınız bitti. Hesap oluşturarak tarif bulma yardımcınızı kullanmaya devam edebilirsiniz.`,
         {
