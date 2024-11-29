@@ -24,10 +24,10 @@ function App() {
 
 export default App;
 
-//DURUM:resim optimizasyonu
+//DURUM:şifremi unuttum
 
 /*
 hataları console a yazmak yerine toastify kullanabilirim
 
-şifremi unuttum
+
  */
