@@ -5,6 +5,7 @@ import Login from "./pages/login/Login";
 import Register from "./pages/register/Register";
 import NotFound from "./pages/notFound/NotFound";
 import Result from "./pages/result/Result";
+import { Toaster } from "react-hot-toast";
 
 function App() {
   return (
@@ -18,16 +19,21 @@ function App() {
           <Route element={<NotFound />} path="*" />
         </Routes>
       </BrowserRouter>
+      <Toaster
+        position="top-right"
+        reverseOrder={false}
+        toastOptions={{ duration: 3000 }}
+      />
     </>
   );
 }
 
 export default App;
 
-//DURUM:şifremi unuttum
+//DURUM:
 
 /*
-hataları console a yazmak yerine toastify kullanabilirim
+misafir girişte hata
 
 
  */

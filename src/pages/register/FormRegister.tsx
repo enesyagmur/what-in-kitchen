@@ -1,7 +1,7 @@
 import { CiMail } from "react-icons/ci";
 
 import logo from "../../assets/logo1.png";
-import { IoEyeOffOutline, IoKeyOutline } from "react-icons/io5";
+import { IoEye, IoEyeOffOutline, IoKeyOutline } from "react-icons/io5";
 import { useNavigate } from "react-router-dom";
 import { CiUser } from "react-icons/ci";
 import { VscError } from "react-icons/vsc";
@@ -61,7 +61,10 @@ const FormRegister = () => {
         <p className="form-title">Yeni Hesap</p>
       </div>
 
-      <form className="form" onSubmit={handleSubmit}>
+      <form
+        className="w-11/12 h-[90%] sm:h-4/6 flex flex-col items-center justify-between mb-4 sm:mb-0"
+        onSubmit={handleSubmit}
+      >
         <div className="input-big-frame">
           <p className="input-title">İsim Soyisim</p>
           <div className="input-small-frame">
@@ -126,11 +129,20 @@ const FormRegister = () => {
               value={values.password}
               onChange={handleChange}
             />
-            <IoEyeOffOutline
-              className="input-info-icon mr-4 cursor-pointer"
-              title="Şifreyi göster/gizle"
-              onClick={() => setShowPassword(!showPassword)}
-            />
+
+            {!showPassword ? (
+              <IoEyeOffOutline
+                className="input-info-icon mr-4 cursor-pointer"
+                title="Şifreyi göster/gizle"
+                onClick={() => setShowPassword(true)}
+              />
+            ) : (
+              <IoEye
+                className="input-info-icon mr-4 cursor-pointer"
+                title="Şifreyi göster/gizle"
+                onClick={() => setShowPassword(false)}
+              />
+            )}
 
             {showErrors && values.password === "" ? (
               <VscError className="input-error-icon" title="Boş bırakılamaz" />

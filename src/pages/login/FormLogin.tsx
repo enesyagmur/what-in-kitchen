@@ -1,6 +1,6 @@
 import { MdOutlineMarkEmailRead } from "react-icons/md";
 import logo from "../../assets/logo1.png";
-import { IoEyeOffOutline, IoKeyOutline } from "react-icons/io5";
+import { IoEye, IoEyeOffOutline, IoKeyOutline } from "react-icons/io5";
 import { FcQuestions } from "react-icons/fc";
 import google_logo from "../../assets/login-bg/google-logo.png";
 import github_logo from "../../assets/login-bg/github-logo.png";
@@ -19,6 +19,12 @@ import { auth } from "../../firebase/firebase";
 import { CgPassword } from "react-icons/cg";
 import { LuMailX } from "react-icons/lu";
 import ResetPassword from "./ResetPassword";
+import toast from "react-hot-toast";
+
+type loginError = {
+  code?: string;
+  message?: string;
+};
 
 const FormLogin = () => {
   const navigate = useNavigate();
@@ -37,9 +43,19 @@ const FormLogin = () => {
       if (user) {
         navigate("/home");
       }
-    } catch (error) {
-      console.error("Login formunda hata:", error);
-      setUserDidntFindError(true);
+    } catch (error: unknown) {
+      const AuthError = error as loginError;
+      if (AuthError?.code === `auth/invalid-credential`) {
+        toast.error("Email veya şifre hatalı", {
+          style: {
+            background: "#DCE9E2",
+            color: "#D96452",
+            border: "1px solid #D96452",
+          },
+        });
+      } else {
+        toast.error(AuthError.message || "Bir hata oluştu");
+      }
     }
   };
 
@@ -52,8 +68,15 @@ const FormLogin = () => {
       if (user) {
         navigate("/home");
       }
-    } catch (error) {
-      console.error("Google ile girişite hata:", error);
+    } catch (error: unknown) {
+      const AuthError = error as loginError;
+      toast.error(`Google girişinde hata ${AuthError.message}`, {
+        style: {
+          background: "#DCE9E2",
+          color: "#D96452",
+          border: "1px solid #D96452",
+        },
+      });
     }
   };
 
@@ -65,8 +88,15 @@ const FormLogin = () => {
       if (user) {
         navigate("/home");
       }
-    } catch (error) {
-      console.error("Github ile girişte hata:", error);
+    } catch (error: unknown) {
+      const AuthError = error as loginError;
+      toast.error(`Github girişinde hata ${AuthError.message}`, {
+        style: {
+          background: "#DCE9E2",
+          color: "#D96452",
+          border: "1px solid #D96452",
+        },
+      });
     }
   };
 
@@ -79,15 +109,21 @@ const FormLogin = () => {
     } else if (Number(check) < 4) {
       navigate("/home");
     } else if (Number(check) === 4) {
-      console.error(
-        "Misafir giriş hakkınız bitti. Hesap oluşturarak tarif bulma yardımcınızı kullanmaya devam edebilirsiniz."
+      toast.error(
+        `Misafir giriş hakkınız bitti. Hesap oluşturarak tarif bulma yardımcınızı kullanmaya devam edebilirsiniz.`,
+        {
+          style: {
+            background: "#DCE9E2",
+            color: "#D96452",
+            border: "1px solid #D96452",
+          },
+        }
       );
     }
   };
 
   const [showErrors, setShowErrors] = useState<boolean>(false);
   const [showPassword, setShowPassword] = useState<boolean>(false);
-  const [userDidntFindError, setUserDidntFindError] = useState<boolean>(false);
   const [resetPasswordShow, setResetPasswordShow] = useState<boolean>(false);
 
   const { values, errors, handleChange, handleSubmit } = useFormik({
@@ -153,11 +189,19 @@ const FormLogin = () => {
                 onChange={handleChange}
                 type={`${showPassword ? "text" : "password"}`}
               />
-              <IoEyeOffOutline
-                className="input-info-icon mr-4 cursor-pointer"
-                title="Şifreyi göster/gizle"
-                onClick={() => setShowPassword(!showPassword)}
-              />
+              {!showPassword ? (
+                <IoEyeOffOutline
+                  className="input-info-icon mr-4 cursor-pointer"
+                  title="Şifreyi göster/gizle"
+                  onClick={() => setShowPassword(true)}
+                />
+              ) : (
+                <IoEye
+                  className="input-info-icon mr-4 cursor-pointer"
+                  title="Şifreyi göster/gizle"
+                  onClick={() => setShowPassword(false)}
+                />
+              )}
               {showErrors && values.password === "" ? (
                 <VscError
                   className="input-error-icon"
@@ -240,13 +284,6 @@ const FormLogin = () => {
           >
             Email ile Kayıt
           </p>
-
-          {showErrors && userDidntFindError && (
-            <p className="w-10/12 text-red-400 text-center">
-              Kullanıcı bilgileri hatalı ya da ilettiğiniz bilgilere ait
-              kullanıcı bulunamadı
-            </p>
-          )}
         </form>
       )}
     </div>
