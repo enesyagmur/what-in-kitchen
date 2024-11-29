@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { FaPlus } from "react-icons/fa6";
 import logo from "../../../assets/logo5.png";
+import toast from "react-hot-toast";
 
 type inputProps = {
   setList: React.Dispatch<React.SetStateAction<string[]>>;
@@ -17,6 +18,16 @@ const InputList: React.FC<inputProps> = ({ setList }) => {
 
     if (newList.length > 1) {
       setList([...newList]);
+    }
+
+    if (newList.length < 2) {
+      toast.error(`Tarif için, lütfen birden fazla malzeme girin.`, {
+        style: {
+          background: "#DCE9E2",
+          color: "#D96452",
+          border: "1px solid #D96452",
+        },
+      });
     }
   };
 
@@ -53,7 +64,7 @@ const InputList: React.FC<inputProps> = ({ setList }) => {
 
       <p className="text-cream_custom text-[10px] sm:text-[12px] md:text-[14px] lg:text-[16px] mt-1 text-center">
         Doğru tarif ve sonuç için malzemelerinizin arasında boşluk olacak
-        şekilde girmeniz yeterli.(Max 12 adet)
+        şekilde girmeniz yeterli.
       </p>
     </div>
   );
