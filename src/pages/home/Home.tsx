@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useEffect, useMemo, useState } from "react";
 
 import Ai from "./Ai";
 import homeBg from "../../assets/home-images/homebg4.png";
@@ -14,12 +14,15 @@ const Home = () => {
     setList([]);
     dispatch(updateError(""));
     dispatch(resetResult());
-  }, []);
+  }, [dispatch]);
 
-  const backgroundStyle = {
-    backgroundImage: `url(${homeBg})`,
-    backgroundRepeat: "repeat-y",
-  };
+  const backgroundStyle = useMemo(
+    () => ({
+      backgroundImage: `url(${homeBg})`,
+      backgroundRepeat: "repeat-y",
+    }),
+    []
+  );
 
   return (
     <div

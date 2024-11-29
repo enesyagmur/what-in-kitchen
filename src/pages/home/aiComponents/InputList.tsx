@@ -11,14 +11,8 @@ const InputList: React.FC<inputProps> = ({ setList }) => {
   const [input, setInput] = useState<string>("");
 
   const updateList = () => {
-    const newList = input.split(" ").filter((item) => item !== "");
-    if (newList.length > 12) {
-      newList.splice(12);
-    }
-
-    if (newList.length > 1) {
-      setList([...newList]);
-    }
+    const cleandedInput = input.trim().replace(/\s+/g, ` `);
+    const newList = cleandedInput.split(" ").filter((item) => item !== "");
 
     if (newList.length < 2) {
       toast.error(`Tarif için, lütfen birden fazla malzeme girin.`, {
@@ -29,6 +23,8 @@ const InputList: React.FC<inputProps> = ({ setList }) => {
         },
       });
     }
+
+    setList([...newList]);
   };
 
   return (

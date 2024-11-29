@@ -1,12 +1,12 @@
 import CurrentUser from "../../components/CurrentUser";
 import InputList from "./aiComponents/InputList";
 import Materials from "./aiComponents/Materials";
-type aiProps = {
+type AiProps = {
   list: string[];
   setList: React.Dispatch<React.SetStateAction<string[]>>;
 };
 
-const Ai: React.FC<aiProps> = ({ list, setList }) => {
+const Ai: React.FC<AiProps> = ({ list, setList }) => {
   return (
     <div className="w-full lg:w-11/12 min-h-svh lg:h-[600px] relative flex items-center justify-center">
       <div className="w-full h-full lg:h-5/6 bg-green_custom rounded-lg opacity-50 absolute"></div>

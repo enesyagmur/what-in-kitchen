@@ -16,6 +16,7 @@ import { useDispatch } from "react-redux";
 import { updateResult } from "../../../redux/resultSlice";
 import { updateError } from "../../../redux/errorSlice";
 import Loading from "./Loading";
+import toast from "react-hot-toast";
 
 type materialsProps = {
   list: string[];
@@ -97,7 +98,14 @@ const Materials: React.FC<materialsProps> = ({ list }) => {
       const result: string = await callGeminiAPI(createAsk());
       return result;
     } catch (error) {
-      console.error("Materials componentinde hata:", error);
+      toast.error(`Materials componentinde hata`, {
+        style: {
+          background: "#DCE9E2",
+          color: "#D96452",
+          border: "1px solid #D96452",
+        },
+      });
+
       return error;
     }
   };
@@ -125,19 +133,20 @@ const Materials: React.FC<materialsProps> = ({ list }) => {
   };
 
   useEffect(() => {
-    const timer = setTimeout(() => {
-      if (loading === true) {
+    let timer: NodeJS.Timeout;
+    if (loading) {
+      timer = setTimeout(() => {
         dispatch(
           updateError(
             "Sonuç beklenenden uzun sürdü! Dilerseniz malzemeleri ya da tarif tipini değiştirerek tekrar deneyebilirsiniz"
           )
         );
+        setLoading(false);
         navigate("/result");
-      }
-    }, 15000);
-
-    return () => clearTimeout(timer);
-  }, [loading]);
+      }, 15000);
+      return () => clearTimeout(timer);
+    }
+  }, [loading, dispatch, navigate]);
 
   const searchFunc = () => {
     checkAnswer();
@@ -148,10 +157,10 @@ const Materials: React.FC<materialsProps> = ({ list }) => {
     <Loading />
   ) : (
     <div className="w-full h-full flex flex-col md:flex-row items-center justify-evenly">
-      <div className="w-11/12 md:w-5/12 lg:w-6/12 h-2/6 md:h-5/6 flex flex-wrap justify-between md:justify-evenly items-center pl-8 md:pl-0">
+      <div className="w-11/12 md:w-4/12 lg:w-6/12 h-2/6 md:h-5/6 flex flex-wrap justify-between md:justify-evenly items-center pl-8 md:pl-0">
         {list.map((element, index) => (
           <div
-            className="w-4/12 md:w-5/12 h-1/6 flex flex-col items-start justify-center"
+            className="w-4/12 md:w-4/12 h-1/6 flex flex-col items-start justify-center"
             key={element + index}
           >
             <div className="w-full h-4/6 flex items-center justify-start">
@@ -193,10 +202,10 @@ const Materials: React.FC<materialsProps> = ({ list }) => {
             >
               <img
                 src={foodTypeImages[index]}
-                className="w-[40px] md:w-[50px] lg:w-[60px] h-[40px] md:h-[50px] lg:h-[60px] object-cover"
+                className="w-[40px] h-[40px] lg:h-[50px] lg:w-[50px] object-cover"
                 alt="Tarif Tipi"
               />
-              <p className="text-cream_custom ml-0 sm:ml-1 text-[12px] sm:text-sm">
+              <p className="text-cream_custom ml-0 sm:ml-1 text-[9px]   sm:text-sm">
                 {item.name}
               </p>
             </div>
