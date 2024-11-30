@@ -32,7 +32,7 @@ const Materials: React.FC<materialsProps> = ({ list }) => {
     { name: "Atıştırmalık", selected: false },
     { name: "İçecek", selected: false },
     { name: "Meze", selected: false },
-    { name: "Fark Etmez", selected: true },
+    { name: "Tümü", selected: true },
   ]);
   const foodChoiceImages = [
     Yemek,
@@ -235,7 +235,7 @@ const Materials: React.FC<materialsProps> = ({ list }) => {
               <img
                 src={foodChoiceImages[index]}
                 alt=""
-                className="w-[50px] md:w-[60px] lg:w-[70px] h-[50px] md:h-[60px] lg:h-[70px] object-cover"
+                className="w-[40px] md:w-[50px] lg:w-[60px] h-[40px] md:h-[50px] lg:h-[60px] object-cover"
               />
               <p className="text-cream_custom ml-0 sm:ml-1 text-[12px] sm:text-sm">
                 {item.name}

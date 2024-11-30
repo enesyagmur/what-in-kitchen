@@ -30,10 +30,4 @@ function App() {
 
 export default App;
 
-//DURUM:
-
-/*
-misafir girişte hata
-
-
- */
+//DURUM: genel düzenlemeler - linkedin paylaşımı
