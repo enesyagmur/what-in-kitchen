@@ -1,6 +1,6 @@
 import axios from "axios";
 
-const apiKey = "AIzaSyB-tT2A8b6FOCVd4vYajoDrXiiY-UNfvQs";
+const apiKey = process.env.REACT_APP_API_KEY;
 
 const callGeminiAPI = async (ask: string) => {
   const url =
