@@ -43,10 +43,7 @@
 
 ## 📷 Ekran Görüntüleri
 
-> 📌 *Buraya bazı ekran görüntüleri ekleyebilirsiniz. Örnek: ana sayfa, tarif sonucu, giriş ekranı, malzeme listesi vs.*
-
----
-![mutfakta-ne-var-ezgif com-video-to-gif-converter](https://github.com/user-attachments/assets/7aca4f39-802e-452c-9cbb-fafa48a4e740)
+> ![mutfakta-ne-var-ezgif com-video-to-gif-converter](https://github.com/user-attachments/assets/7aca4f39-802e-452c-9cbb-fafa48a4e740)
 
 ## 🧪 Nasıl Çalışır?
 
