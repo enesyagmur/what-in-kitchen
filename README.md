@@ -1,50 +1,57 @@
-# React + TypeScript + Vite
+# 🪧 Mutfakta Ne Var?
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+**“Mutfakta Ne Var?”**, mutfağınızda bulunan malzemelere göre yapabileceğiniz tarifleri yapay zekâ desteğiyle bulmanızı sağlayan yenilikçi bir web uygulamasıdır. Vegan, vejetaryen, sağlıklı gibi yaşam tarzlarına ve tatlı, içecek, atıştırmalık gibi içerik türlerine göre filtrelenmiş tarifler sunar.
 
-Currently, two official plugins are available:
+🔗 [Canlı Uygulama](https://lnkd.in/dHDgsiFU)  
+🔗 [GitHub Repo](https://lnkd.in/drBk8fPr)
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+---
 
-## Expanding the ESLint configuration
+## 🔎 Özellikler
 
-If you are developing a production application, we recommend updating the configuration to enable type aware lint rules:
+- 🔐 Mail ile kullanıcı kayıt ve giriş  
+- 👥 Tek seferlik **misafir girişi**  
+- 🌐 Google & GitHub ile OAuth giriş ve kayıt  
+- 🔑 Şifre sıfırlama  
+- ❓ "Nasıl çalışır?" bölümü  
+- ✅ **Formik + Yup** ile form doğrulama  
+- 🔔 **React Hot Toast** ile bilgilendirme mesajları  
+- 🧺 Malzeme listesi oluşturma ve gösterme  
+- 🙋 Kullanıcı ismini görme & çıkış yapabilme  
+- 🚫 Geçersiz URL’ler için özel `NotFound` sayfası  
+- 📱 %100 **Responsive tasarım**
 
-- Configure the top-level `parserOptions` property like this:
+---
 
-```js
-export default tseslint.config({
-  languageOptions: {
-    // other options...
-    parserOptions: {
-      project: ['./tsconfig.node.json', './tsconfig.app.json'],
-      tsconfigRootDir: import.meta.dirname,
-    },
-  },
-})
-```
+## 🧰 Kullanılan Teknolojiler
 
-- Replace `tseslint.configs.recommended` to `tseslint.configs.recommendedTypeChecked` or `tseslint.configs.strictTypeChecked`
-- Optionally add `...tseslint.configs.stylisticTypeChecked`
-- Install [eslint-plugin-react](https://github.com/jsx-eslint/eslint-plugin-react) and update the config:
+| Teknoloji | Açıklama |
+|----------|----------|
+| 🟦 **Typescript** | Güvenli ve güçlü tip denetimi |
+| ⚛️ **React** | UI oluşturmak için |
+| 🎨 **Tailwind CSS** | Modern ve esnek CSS framework |
+| 🔥 **Firebase** | Auth, Firestore & Hosting |
+| 🤖 **Gemini AI** | Malzemelere göre tarif üretme |
+| 📡 **Axios** | API istekleri için |
+| ✅ **Formik & Yup** | Form kontrol ve validasyon |
+| 🔁 **React Router DOM** | Sayfa yönlendirme |
+| 🎯 **React Redux** | Global state yönetimi |
+| 🔧 **React Hooks** | Fonksiyonel bileşen mantığı |
+| 💎 **React Icons** | Görsel zenginlik için ikon desteği |
 
-```js
-// eslint.config.js
-import react from 'eslint-plugin-react'
+---
 
-export default tseslint.config({
-  // Set the react version
-  settings: { react: { version: '18.3' } },
-  plugins: {
-    // Add the react plugin
-    react,
-  },
-  rules: {
-    // other rules...
-    // Enable its recommended rules
-    ...react.configs.recommended.rules,
-    ...react.configs['jsx-runtime'].rules,
-  },
-})
-```
+## 📷 Ekran Görüntüleri
+
+> 📌 *Buraya bazı ekran görüntüleri ekleyebilirsiniz. Örnek: ana sayfa, tarif sonucu, giriş ekranı, malzeme listesi vs.*
+
+---
+
+## 🧪 Nasıl Çalışır?
+
+1. Giriş yapın (veya misafir olarak devam edin).
+2. Malzemelerinizi listeleyin.
+3. Tarzınızı ve türünüzü seçin (örneğin: vegan & tatlı).
+4. Gemini AI sizin için uygun tarif önerilerini getirsin!
+
+---
